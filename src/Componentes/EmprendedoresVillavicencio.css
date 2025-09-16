@@ -311,8 +311,48 @@ body {
   border-radius: 20px;
   padding: 3rem;
   margin: 3rem 0;
-  color: white;
+  color: white; /* Asegura que el texto general dentro del formulario sea blanco */
   box-shadow: 0 15px 35px rgba(21, 101, 192, 0.2);
+}
+
+/* ... (tu código CSS anterior) ... */
+
+.form-group label {
+  position: absolute;
+  top: 0;
+  left: 15px;
+  background-color: transparent; /* Quitar el fondo para que no tape el gradiente */
+  padding: 0 5px;
+  font-size: 0.9rem;
+  color: white; /* Cambiado a blanco puro para mayor visibilidad */
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-radius: 15px;
+  background: rgba(255,255,255,0.25);
+  color: white; /* Asegura que el texto que el usuario introduce sea blanco */
+  font-weight: 400;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255,255,255,0.8); /* Placeholder en blanco con ligera transparencia */
+}
+
+.form-group select option {
+  background-color: #0D47A1; /* Un color de fondo más oscuro para las opciones */
+  color: white; /* Asegura que el texto de las opciones sea blanco */
+  padding: 0.5rem;
 }
 
 .form-grid {
@@ -346,7 +386,7 @@ body {
   padding: 1rem;
   border: 2px solid rgba(255,255,255,0.3);
   border-radius: 15px;
-  background: rgba(255,255,255,0.25);
+  background: rgba(248, 248, 248, 0.25);
   color: white;
   font-weight: 400;
   backdrop-filter: blur(10px);
