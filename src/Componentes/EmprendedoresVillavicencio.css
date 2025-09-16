@@ -324,16 +324,19 @@ body {
 
 .form-group {
   position: relative;
+  padding-top: 1.5rem; /* Añadir espacio arriba para la etiqueta */
 }
 
 .form-group label {
-  position: absolute;
-  top: -10px;
+  position: absolute; /* Mantener el posicionamiento absoluto */
+  top: 0; /* Alinear arriba del grupo */
   left: 15px;
-  background: linear-gradient(135deg, #1565C0 0%, #0D47A1 50%, #00695C 100%);
-  padding: 0 10px;
+  background-color: transparent; /* Quitar el fondo para que no tape el gradiente */
+  padding: 0 5px; /* Ajustar el padding */
   font-size: 0.9rem;
-  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.8); /* Ajustar color para que sea más legible */
+  border-radius: 5px;
+  z-index: 1; /* Asegurar que la etiqueta esté por encima del input */
 }
 
 .form-group input,
@@ -348,36 +351,7 @@ body {
   font-weight: 400;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: rgba(255,255,255,0.8);
-}
-
-.form-group select option {
-  background: #1565C0;
-  color: white;
-  padding: 0.5rem;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-  outline: none;
-  border-color: #00E676;
-  box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.2);
-  background: rgba(255,255,255,0.35);
-  transform: scale(1.02);
-}
-
-.form-group.full-width {
-  grid-column: 1 / -1;
-}
-
-.form-submit-container {
-  text-align: center;
-  margin-top: 2rem;
+  margin-top: 0.5rem; /* Añadir un margen superior para separar del label */
 }
 
 .form-submit-btn {
