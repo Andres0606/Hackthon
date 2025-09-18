@@ -7,8 +7,23 @@ const Catalogo = () => {
   const [activeTab, setActiveTab] = useState('productos');
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [productos, setProductos] = useState([]);
-  const [showForm, setShowForm] = useState(false);
+  // Persistencia en localStorage
+  const [productos, setProductos] = useState(() => {
+    const guardados = localStorage.getItem('productos');
+    return guardados ? JSON.parse(guardados) : [];
+  });
+  const [showForm, setShowForm] = useState(() => {
+    const guardado = localStorage.getItem('showForm');
+    return guardado ? JSON.parse(guardado) : false;
+  });
+  // Sincronizar productos y showForm con localStorage
+  useEffect(() => {
+    localStorage.setItem('productos', JSON.stringify(productos));
+  }, [productos]);
+
+  useEffect(() => {
+    localStorage.setItem('showForm', JSON.stringify(showForm));
+  }, [showForm]);
   const [formData, setFormData] = useState({
     nombre: '',
     categoria: 'productos',
