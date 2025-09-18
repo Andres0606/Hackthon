@@ -1,20 +1,39 @@
-import React from 'react';
-import '../Componentes/Header.css';
+import React from "react";
+import "../Componentes/Header.css";
+import { FaBell, FaUserCircle } from "react-icons/fa";
 
 const Header = ({ scrollToSection }) => {
   return (
     <header className="header">
       <nav className="nav-container">
-        <div className="logo" onClick={() => scrollToSection('inicio')}>
-          Villavicencio Emprende
+
+        {/* Logo Izquierda */}
+        <div className="logo" onClick={() => scrollToSection("inicio")}>
+          Impulsa Villao
         </div>
-        <ul className="nav-menu">
-          <li><a onClick={() => scrollToSection('inicio')}>🔹 Explora</a></li>
-          <li><a onClick={() => scrollToSection('vitrina')}>🔹 Vitrina</a></li>
-          <li><a onClick={() => scrollToSection('oportunidades')}>🔹 Oportunidades</a></li>
-          <li><a onClick={() => scrollToSection('talento')}>🔹 Talento Local</a></li>
-          <li><a onClick={() => scrollToSection('contacto')}>🔹 Conéctate</a></li>
-        </ul>
+
+        {/* Centro: Menú + Buscador */}
+        <div className="nav-center">
+          <ul className="nav-menu">
+            <li>
+              <a onClick={() => scrollToSection("inicio")}>Inicio</a>
+            </li>
+            <li>
+              <a onClick={() => scrollToSection("catalogo")}>Catálogo</a>
+            </li>
+          </ul>
+          <input
+            type="text"
+            className="search-bar"
+            placeholder="Buscar..."
+          />
+        </div>
+
+        {/* Derecha: Notificaciones + Usuario */}
+        <div className="nav-right">
+          <FaBell className="icon bell" />
+          <FaUserCircle className="icon user" />
+        </div>
       </nav>
     </header>
   );
