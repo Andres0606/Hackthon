@@ -1,5 +1,5 @@
 import React from 'react';
-import EmprendedoresVillavicencio from './Interfaces/Footer';
+import EmprendedoresVillavicencio from './Interfaces/Inicio';
 
 function App() {
   return (
