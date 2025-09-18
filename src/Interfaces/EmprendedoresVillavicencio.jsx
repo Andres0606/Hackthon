@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Header from './Header';
+import Footer from './Footer';
 import '../Componentes/EmprendedoresVillavicencio.css';
-
 
 const EmprendedoresVillavicencio = () => {
   const [showModal, setShowModal] = useState(false);
@@ -84,71 +85,135 @@ const EmprendedoresVillavicencio = () => {
 
   return (
     <div className="app">
-      {/* Header */}
-      <header className="header">
-        <nav className="nav-container">
-          <div className="logo" onClick={() => scrollToSection('inicio')}>
-            Villavicencio Emprende
-          </div>
-          <ul className="nav-menu">
-            <li><a onClick={() => scrollToSection('inicio')}>🔹 Explora</a></li>
-            <li><a onClick={() => scrollToSection('vitrina')}>🔹 Vitrina</a></li>
-            <li><a onClick={() => scrollToSection('oportunidades')}>🔹 Oportunidades</a></li>
-            <li><a onClick={() => scrollToSection('talento')}>🔹 Talento Local</a></li>
-            <li><a onClick={() => scrollToSection('contacto')}>🔹 Conéctate</a></li>
-          </ul>
-        </nav>
-      </header>
+      {/* Header Component */}
+      <Header scrollToSection={scrollToSection} />
 
-      {/* Hero Section */}
-      <section className="hero" id="inicio">
-        <div className="hero-content">
-          <h1>¡Tu Emprendimiento Merece Brillar! ✨</h1>
-          <p>Conecta con miles de villavicenses, muestra tus productos y haz crecer tu negocio en la plataforma oficial de emprendimiento de Villavicencio.</p>
-          <div className="cta-buttons">
-            <button className="btn btn-primary" onClick={() => scrollToSection('publicar')}>
-              🚀 Publica tu Emprendimiento
+      {/* Sección de Inicio - Mockup */}
+      <section className="inicio-section" id="inicio">
+        <div className="inicio-header">
+          <h1>Bienvenida</h1>
+        </div>
+        
+        <div className="inicio-cards">
+          <div className="inicio-card">
+            <div className="card-icon">👥</div>
+            <h3>Conoce emprendedores locales</h3>
+            <p>Descubre y conecta con emprendedores de Villavicencio y el Meta</p>
+            <button className="btn btn-secondary" onClick={() => scrollToSection('emprendedores')}>
+              Ver Emprendedores
             </button>
-            <button className="btn btn-secondary" onClick={() => scrollToSection('vitrina')}>
-              👀 Explorar Vitrina
+          </div>
+          
+          <div className="inicio-card highlighted">
+            <div className="card-icon">📅</div>
+            <h3>Próximos eventos / convocatorias</h3>
+            <p>Mantente al día con eventos, ferias y oportunidades de negocio</p>
+            <button className="btn btn-primary" onClick={() => scrollToSection('eventos')}>
+              Ver Eventos
+            </button>
+          </div>
+          
+          <div className="inicio-card">
+            <div className="card-icon">💰</div>
+            <h3>Oportunidades de financiación / apoyo</h3>
+            <p>Encuentra programas de apoyo y financiación para tu emprendimiento</p>
+            <button className="btn btn-secondary" onClick={() => scrollToSection('financiacion')}>
+              Ver Oportunidades
             </button>
           </div>
         </div>
       </section>
 
-      {/* Características */}
-      <section className="section animate-on-scroll" id="vitrina">
-        <h2>¿Por qué elegir nuestro portal?</h2>
+      {/* Sección de Emprendedores */}
+      <section className="section animate-on-scroll" id="emprendedores">
+        <h2>🌟 Emprendedores Locales</h2>
         <div className="features-grid">
           <div className="feature-card">
-            <span className="feature-icon">🎯</span>
-            <h3>Alcance Local</h3>
-            <p>Conecta directamente con clientes de Villavicencio y el Meta. Tu audiencia perfecta está aquí esperándote.</p>
+            <span className="feature-icon">👨‍🍳</span>
+            <h3>Chef Criollo</h3>
+            <p><strong>Carlos Ramírez</strong><br />Especialista en comida llanera tradicional. Más de 500 pedidos exitosos.</p>
+            <small>📍 Centro • 📞 314 567 8900</small>
           </div>
           <div className="feature-card">
-            <span className="feature-icon">🆓</span>
-            <h3>Totalmente Gratis</h3>
-            <p>Publica tus productos y servicios sin costo alguno. El apoyo de la Alcaldía para impulsar tu negocio.</p>
+            <span className="feature-icon">🎨</span>
+            <h3>Arte Villavicense</h3>
+            <p><strong>Ana Sofía Torres</strong><br />Artesanías únicas inspiradas en la cultura llanera. Reconocida nacionalmente.</p>
+            <small>📍 La Grama • 📞 311 234 5678</small>
           </div>
           <div className="feature-card">
-            <span className="feature-icon">🤝</span>
-            <h3>Red de Contactos</h3>
-            <p>Conoce otros emprendedores, colabora y crea alianzas estratégicas para hacer crecer tu negocio.</p>
+            <span className="feature-icon">💻</span>
+            <h3>Tech Solutions</h3>
+            <p><strong>David Morales</strong><br />Desarrollo web y apps móviles para pequeñas empresas de la región.</p>
+            <small>📍 Barzal • 📞 320 987 6543</small>
           </div>
           <div className="feature-card">
-            <span className="feature-icon">📈</span>
-            <h3>Oportunidades de Crecimiento</h3>
-            <p>Accede a convocatorias, ferias y eventos exclusivos para emprendedores de la ciudad.</p>
+            <span className="feature-icon">🛍️</span>
+            <h3>Moda Llanera</h3>
+            <p><strong>Lucía Herrera</strong><br />Diseños únicos inspirados en la cultura llanera. Moda sostenible y local.</p>
+            <small>📍 Maizaro • 📞 315 789 0123</small>
           </div>
           <div className="feature-card">
-            <span className="feature-icon">🛡️</span>
-            <h3>Plataforma Segura</h3>
-            <p>Respaldada por la Alcaldía de Villavicencio, con verificación de emprendedores y transacciones seguras.</p>
+            <span className="feature-icon">🌿</span>
+            <h3>Productos Naturales</h3>
+            <p><strong>Miguel Rodríguez</strong><br />Productos orgánicos del llano. Alimentación saludable y sostenible.</p>
+            <small>📍 Kirpas • 📞 318 456 7890</small>
           </div>
           <div className="feature-card">
-            <span className="feature-icon">📱</span>
-            <h3>Fácil de Usar</h3>
-            <p>Interfaz intuitiva y amigable. Publica en minutos desde cualquier dispositivo.</p>
+            <span className="feature-icon">🎵</span>
+            <h3>Escuela de Música</h3>
+            <p><strong>Carmen Delgado</strong><br />Enseñanza de música llanera y folclórica. Formación cultural auténtica.</p>
+            <small>📍 Centro • 📞 301 234 5678</small>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección de Eventos */}
+      <section className="section animate-on-scroll" id="eventos">
+        <h2>📅 Próximos Eventos y Convocatorias</h2>
+        <div className="events-grid">
+          <div className="event-card upcoming">
+            <div className="event-date">
+              <span className="day">25</span>
+              <span className="month">DIC</span>
+            </div>
+            <div className="event-info">
+              <h3>Feria de Emprendimiento Navideño</h3>
+              <p>Expón tus productos navideños y conecta con clientes en la temporada más importante del año.</p>
+              <div className="event-details">
+                <span>📍 Plaza Los Libertadores</span>
+                <span>⏰ 8:00 AM - 6:00 PM</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="event-card">
+            <div className="event-date">
+              <span className="day">15</span>
+              <span className="month">ENE</span>
+            </div>
+            <div className="event-info">
+              <h3>Convocatoria Impulsa Meta 2025</h3>
+              <p>Programa de apoyo financiero para emprendimientos innovadores. Hasta $50 millones por proyecto.</p>
+              <div className="event-details">
+                <span>📝 Inscripciones abiertas</span>
+                <span>💰 Hasta $50.000.000</span>
+              </div>
+            </div>
+          </div>
+          
+          <div className="event-card">
+            <div className="event-date">
+              <span className="day">20</span>
+              <span className="month">ENE</span>
+            </div>
+            <div className="event-info">
+              <h3>Taller de Marketing Digital</h3>
+              <p>Aprende a promocionar tu emprendimiento en redes sociales y plataformas digitales.</p>
+              <div className="event-details">
+                <span>📍 Cámara de Comercio</span>
+                <span>🎓 Capacitación gratuita</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -257,67 +322,56 @@ const EmprendedoresVillavicencio = () => {
         </div>
       </section>
 
-      {/* Sección de Emprendedores Destacados */}
-      <section className="section animate-on-scroll" id="talento">
-        <h2>🌟 Emprendedores Destacados</h2>
-        <div className="features-grid">
-          <div className="feature-card">
-            <span className="feature-icon">👨‍🍳</span>
-            <h3>Chef Criollo</h3>
-            <p><strong>Carlos Ramírez</strong><br />Especialista en comida llanera tradicional. Más de 500 pedidos exitosos.</p>
-            <small>📍 Centro • 📞 314 567 8900</small>
+      {/* Sección de Financiación */}
+      <section className="section animate-on-scroll" id="financiacion">
+        <h2>💰 Oportunidades de Financiación y Apoyo</h2>
+        <div className="financing-grid">
+          <div className="financing-card government">
+            <div className="financing-header">
+              <span className="financing-icon">🏛️</span>
+              <h3>Programas Gubernamentales</h3>
+            </div>
+            <ul className="financing-list">
+              <li>💼 Fondo Emprender SENA - Hasta $200 millones</li>
+              <li>🌱 Colombia Emprende - Capital semilla</li>
+              <li>📈 iNNpulsa Colombia - Escalamiento</li>
+              <li>🎯 Programa Meta Emprende - Apoyo local</li>
+            </ul>
+            <button className="btn btn-outline">Ver Convocatorias</button>
           </div>
-          <div className="feature-card">
-            <span className="feature-icon">🎨</span>
-            <h3>Arte Villavicense</h3>
-            <p><strong>Ana Sofía Torres</strong><br />Artesanías únicas inspiradas en la cultura llanera. Reconocida nacionalmente.</p>
-            <small>📍 La Grama • 📞 311 234 5678</small>
+          
+          <div className="financing-card private">
+            <div className="financing-header">
+              <span className="financing-icon">🏢</span>
+              <h3>Sector Privado</h3>
+            </div>
+            <ul className="financing-list">
+              <li>🏦 Bancóldex - Líneas de crédito especiales</li>
+              <li>💳 Microcréditos Bancamía</li>
+              <li>🤝 Fundación Grameen - Microfinanzas</li>
+              <li>📊 Aceleradoras privadas</li>
+            </ul>
+            <button className="btn btn-outline">Conocer Más</button>
           </div>
-          <div className="feature-card">
-            <span className="feature-icon">💻</span>
-            <h3>Tech Solutions</h3>
-            <p><strong>David Morales</strong><br />Desarrollo web y apps móviles para pequeñas empresas de la región.</p>
-            <small>📍 Barzal • 📞 320 987 6543</small>
+          
+          <div className="financing-card support">
+            <div className="financing-header">
+              <span className="financing-icon">🎓</span>
+              <h3>Programas de Apoyo</h3>
+            </div>
+            <ul className="financing-list">
+              <li>📚 Capacitaciones gratuitas</li>
+              <li>👨‍🏫 Mentoría empresarial</li>
+              <li>🔧 Asistencia técnica</li>
+              <li>🌐 Acceso a mercados digitales</li>
+            </ul>
+            <button className="btn btn-outline">Inscribirse</button>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="footer" id="contacto">
-        <div className="footer-content">
-          <div className="footer-section">
-            <h3>🏛️ Alcaldía de Villavicencio</h3>
-            <p>Impulsando el emprendimiento local para un Meta próspero y competitivo.</p>
-            <p><strong>📍</strong> Carrera 29 # 37-04, Centro</p>
-            <p><strong>📞</strong> (8) 681 5000</p>
-          </div>
-          <div className="footer-section">
-            <h3>🚀 Para Emprendedores</h3>
-            <a onClick={() => scrollToSection('publicar')}>Publica tu negocio</a>
-            <a onClick={() => scrollToSection('oportunidades')}>Ver convocatorias</a>
-            <a>Capacitaciones gratuitas</a>
-            <a>Programa de mentoría</a>
-          </div>
-          <div className="footer-section">
-            <h3>🛒 Para Compradores</h3>
-            <a onClick={() => scrollToSection('vitrina')}>Explorar productos</a>
-            <a>Buscar por categorías</a>
-            <a>Compra local</a>
-            <a>Mis favoritos</a>
-          </div>
-          <div className="footer-section">
-            <h3>📞 Soporte</h3>
-            <a href="mailto:emprendimiento@villavicencio.gov.co">📧 Escribenos</a>
-            <a href="tel:+576816000">📞 (8) 681 6000</a>
-            <a>❓ Centro de ayuda</a>
-            <a>📋 Términos y condiciones</a>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <p>&copy; 2024 Alcaldía de Villavicencio - Portal de Emprendimiento. Todos los derechos reservados.</p>
-          <p className="footer-love">💚 Hecho con amor por y para los villavicenses</p>
-        </div>
-      </footer>
+      {/* Footer Component */}
+      <Footer scrollToSection={scrollToSection} />
 
       {/* Modal de Éxito */}
       {showModal && (
