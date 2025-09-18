@@ -1,0 +1,77 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #00695C, #1565C0);
+}
+
+.register-form {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: 400px;
+  text-align: center;
+}
+
+.register-form h2 {
+  margin-bottom: 1.5rem;
+  color: #00695C;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.form-group input:focus {
+  border: 1px solid #00695C;
+}
+
+.btn {
+  background: #00695C;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  background: #004D40;
+}
+
+.switch-form {
+  margin-top: 1rem;
+  font-size: 14px;
+}
+
+.switch-form a {
+  color: #00695C;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.switch-form a:hover {
+  text-decoration: underline;
+}
