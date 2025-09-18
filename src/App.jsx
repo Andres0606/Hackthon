@@ -1,5 +1,5 @@
 import React from 'react';
-import EmprendedoresVillavicencio from './Interfaces/Register';
+import EmprendedoresVillavicencio from './Interfaces/Catalogo';
 
 function App() {
   return (
@@ -7,6 +7,6 @@ function App() {
       <EmprendedoresVillavicencio />
     </div>
   );
-}
+} 
 
 export default App;
