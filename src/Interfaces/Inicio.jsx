@@ -3,12 +3,11 @@ import '../Componentes/Inicio.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 
-const Main = () => {
+const Inicio = () => {
   return (
     <> 
       <Header />
       <div className="main-container">
-        {/* Main Content */}
         <main className="content">
           <div className="cards-container">
             {/* Card 1 */}
@@ -48,4 +47,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export default Inicio;
