@@ -1,0 +1,153 @@
+/* Contenedor principal */
+.emprendedores-container {
+  padding: 40px 20px;
+  text-align: center;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* Título */
+.emprendedores-container h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #1565c0;
+  font-weight: bold;
+}
+
+/* Filtros (selects) */
+.filtros {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.filtros select {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: border 0.3s;
+}
+
+.filtros select:focus {
+  border: 1px solid #1565c0;
+  outline: none;
+}
+
+/* Contenedor de tarjetas */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+/* Tarjeta */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  width: 300px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+/* Imagen */
+.card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* Contenido de la tarjeta */
+.card-body {
+  padding: 15px;
+  text-align: left;
+}
+
+.card-body h2 {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+  color: #1565c0;
+}
+
+.card-body h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #444;
+  font-weight: normal;
+}
+
+.card-body p {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.4;
+}
+
+/* Semaforización */
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.verde { background: #4caf50; }
+.amarillo { background: #ffb300; }
+.rojo { background: #e53935; }
+
+/* Acciones dentro de la tarjeta */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Botón "Me gusta" */
+.like-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: transform 0.2s, color 0.3s;
+}
+
+.like-btn:hover {
+  transform: scale(1.1);
+}
+
+.like-btn.liked {
+  color: #e53935;
+  font-weight: bold;
+}
+
+/* Contador de visitas */
+.visitas {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 90%;
+  }
+}
