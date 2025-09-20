@@ -1,26 +1,22 @@
 const bcrypt = require("bcrypt");
 const userModel = require("../models/userModel");
 
-// Registro de usuario
+// Registro de usuario (ya lo tienes)
 const registerUser = async (req, res) => {
   try {
     const { nombre, apellido, email, contrasena, telefono_usuario } = req.body;
 
-    // Validar campos obligatorios
     if (!nombre || !apellido || !email || !contrasena) {
       return res.status(400).json({ message: "Todos los campos obligatorios deben llenarse" });
     }
 
-    // Verificar si ya existe el email
     const existingUser = await userModel.findByEmail(email);
     if (existingUser) {
       return res.status(400).json({ message: "El email ya está registrado" });
     }
 
-    // Encriptar contraseña
     const hashedPassword = await bcrypt.hash(contrasena, 10);
 
-    // Crear usuario con rol "ciudadano" por defecto
     const newUser = await userModel.createUser(
       nombre,
       apellido,
@@ -46,4 +42,43 @@ const registerUser = async (req, res) => {
   }
 };
 
-module.exports = { registerUser };
+// 🔹 Login de usuario
+const loginUser = async (req, res) => {
+  try {
+    const { email, contrasena } = req.body;
+
+    // Verificar campos
+    if (!email || !contrasena) {
+      return res.status(400).json({ message: "Email y contraseña son obligatorios" });
+    }
+
+    // Buscar usuario
+    const user = await userModel.findByEmail(email);
+    if (!user) {
+      return res.status(401).json({ message: "Credenciales inválidas" });
+    }
+
+    // Verificar contraseña
+    const validPassword = await bcrypt.compare(contrasena, user.contrasena);
+    if (!validPassword) {
+      return res.status(401).json({ message: "Credenciales inválidas" });
+    }
+
+    // Si es correcto
+    res.status(200).json({
+      message: "✅ Login exitoso",
+      user: {
+        id_usuario: user.id_usuario,
+        nombre: user.nombre,
+        email: user.email,
+        rol: user.rol
+      }
+    });
+
+  } catch (error) {
+    console.error("❌ Error en login:", error);
+    res.status(500).json({ message: "Error en el servidor" });
+  }
+};
+
+module.exports = { registerUser, loginUser };
