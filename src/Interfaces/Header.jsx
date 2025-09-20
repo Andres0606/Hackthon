@@ -16,7 +16,6 @@ const Header = ({ scrollToSection }) => {
   // Función para alternar el panel de notificaciones
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
-    // Ya no hay timeout automático - solo marcado manual
   };
 
   // Función para cerrar notificaciones
@@ -35,6 +34,16 @@ const Header = ({ scrollToSection }) => {
     { id: 2, message: "Tu financiamiento fue aprobado", time: "hace 1 día" },
     { id: 3, message: "Recordatorio: reunión mañana", time: "hace 2 días" }
   ];
+
+  // ✅ Validar sesión al dar click en el icono de usuario
+  const handleUserClick = () => {
+    const userId = sessionStorage.getItem("userId");
+    if (userId) {
+      navigate("/perfil"); // Si ya está logueado 👉 va a Perfil
+    } else {
+      navigate("/login"); // Si no está logueado 👉 va a Login
+    }
+  };
 
   return (
     <header className="header">
@@ -69,12 +78,10 @@ const Header = ({ scrollToSection }) => {
               className="icon bell" 
               onClick={toggleNotifications}
             />
-            {/* Solo mostrar badge si hay notificaciones no leídas */}
             {unreadCount > 0 && (
               <span className="notification-badge">{unreadCount}</span>
             )}
             
-            {/* Panel de notificaciones */}
             {showNotifications && (
               <div className="notifications-panel">
                 <div className="notifications-header">
@@ -99,7 +106,6 @@ const Header = ({ scrollToSection }) => {
                   )}
                 </div>
                 
-                {/* Botón para marcar todas como leídas */}
                 {unreadCount > 0 && (
                   <div className="notifications-footer">
                     <button 
@@ -114,9 +120,10 @@ const Header = ({ scrollToSection }) => {
             )}
           </div>
           
+          {/* 👤 Icono usuario con validación de sesión */}
           <FaUserCircle 
             className="icon user" 
-            onClick={() => handleNavigation("/login")}
+            onClick={handleUserClick}
           />
         </div>
       </nav>
