@@ -88,11 +88,6 @@ const Header = ({ scrollToSection }) => {
               <a onClick={() => handleNavigation("/catalogo")}>Catálogo</a>
             </li>*/}
           </ul>
-          <input
-            type="text"
-            className="search-bar"
-            placeholder="Buscar..."
-          />
         </div>
 
         {/* Derecha: Notificaciones + Usuario */}

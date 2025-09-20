@@ -320,3 +320,47 @@ body {
 * {
   box-sizing: border-box;
 }
+
+
+
+
+
+/* Ajustes responsive adicionales */
+
+/* 1. Grid flexible */
+.profile-content {
+  grid-template-columns: minmax(280px, 400px) 1fr;
+}
+
+/* 2. Inputs y botones fluidos */
+.form-input,
+.primary-btn,
+.secondary-btn,
+.upload-btn,
+.create-entrepreneurship-btn {
+  max-width: 100%;
+}
+
+/* 3. Evitar alturas fijas en photo-section */
+.photo-section {
+  min-height: auto;
+}
+
+/* 4. Tipografía escalable */
+html {
+  font-size: 100%;
+}
+
+@media (max-width: 480px) {
+  html {
+    font-size: 90%;
+  }
+}
+
+/* 5. Ajustes en tablets */
+@media (max-width: 768px) {
+  .photo-section {
+    text-align: center;
+    align-items: center;
+  }
+}

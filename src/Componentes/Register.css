@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   padding: 20px;
+  margin: 80px 0;
   
   /* Imagen de fondo */
   background-image: url('../Imagenes/LOGIN-REGISTRO.jpg'); /* Ajusta la ruta según tu estructura */
@@ -22,7 +23,7 @@
 .register-form {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 15px;
+  border-radius: 98px;
   padding: 40px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
   width: 100%;

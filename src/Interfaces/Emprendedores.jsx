@@ -53,9 +53,9 @@ const Emprendedores = () => {
     switch (estado) {
       case "Formalizado":
         return "badge verde";
-      case "En proceso":
+      case "En Proceso":
         return "badge amarillo";
-      case "Por formalizar":
+      case "Por Formalizar":
         return "badge rojo";
       default:
         return "badge";
@@ -83,8 +83,8 @@ const Emprendedores = () => {
           <select onChange={(e) => setFiltroFormalizacion(e.target.value)}>
             <option>Semaforizacion</option>
             <option>Formalizado</option>
-            <option>En proceso</option>
-            <option>Por formalizar</option>
+            <option>En Proceso</option>
+            <option>Por Formalizar</option>
           </select>
 
           <select onChange={(e) => setFiltroUbicacion(e.target.value)}>
@@ -124,9 +124,6 @@ const Emprendedores = () => {
                   >
                     {favoritos[emp.id_empresa] ? "❤️ Me gusta" : "🤍 Me gusta"}
                   </button>
-                  <span className="visitas">
-                    👁️ {visitas[emp.id_empresa] || 0} visitas
-                  </span>
                 </div>
               </div>
             </div>

@@ -1,48 +1,68 @@
+/* emprendedores.css - Versión Responsiva Completa */
+
+* {
+  box-sizing: border-box;
+}
+
 /* Contenedor principal */
 .emprendedores-container {
-  padding: 80px 20px;
+  padding: clamp(1rem, 5vw, 80px) clamp(1rem, 4vw, 20px);
   text-align: center;
   background: #f5f7fa;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* Título */
 .emprendedores-container h1 {
-  font-size: 2rem;
-  margin-bottom: 20px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: clamp(15px, 3vw, 20px);
   color: #1565c0;
   font-weight: bold;
+  text-align: center;
+  line-height: 1.2;
+  padding: 0 1rem;
 }
 
 /* Filtros (selects) */
 .filtros {
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 4vw, 30px);
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: clamp(10px, 2vw, 15px);
   flex-wrap: wrap;
+  padding: 0 1rem;
+  align-items: center;
 }
 
 .filtros select {
-  padding: 10px 14px;
+  padding: clamp(8px, 1.5vw, 10px) clamp(10px, 2vw, 14px);
   border-radius: 8px;
   border: 1px solid #ccc;
   cursor: pointer;
-  font-size: 0.95rem;
-  transition: border 0.3s;
+  font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+  transition: border 0.3s, box-shadow 0.3s;
+  background: white;
+  min-width: 120px;
+  max-width: 200px;
+  flex: 1 1 auto;
 }
 
 .filtros select:focus {
   border: 1px solid #1565c0;
   outline: none;
+  box-shadow: 0 0 0 2px rgba(21, 101, 192, 0.1);
 }
 
 /* Contenedor de tarjetas */
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 25px;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: clamp(15px, 3vw, 25px);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 /* Tarjeta */
@@ -50,10 +70,15 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  width: 300px;
+  width: 100%;
+  max-width: 350px;
+  min-width: 280px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -64,45 +89,58 @@
 /* Imagen */
 .card-img {
   width: 100%;
-  height: 180px;
+  height: clamp(150px, 25vw, 180px);
   object-fit: cover;
+  display: block;
 }
 
 /* Contenido de la tarjeta */
 .card-body {
-  padding: 15px;
+  padding: clamp(12px, 2.5vw, 15px);
   text-align: left;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-body h2 {
-  font-size: 1.2rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.2rem);
   margin-bottom: 4px;
   color: #1565c0;
+  line-height: 1.3;
+  font-weight: 600;
 }
 
 .card-body h3 {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
   margin-bottom: 10px;
   color: #444;
   font-weight: normal;
+  line-height: 1.3;
 }
 
 .card-body p {
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 1.6vw, 0.9rem);
   color: #333;
   margin-bottom: 15px;
   line-height: 1.4;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Semaforización */
 .badge {
   display: inline-block;
-  padding: 6px 12px;
+  padding: clamp(4px, 1vw, 6px) clamp(8px, 1.5vw, 12px);
   border-radius: 20px;
-  font-size: 0.8rem;
+  font-size: clamp(0.75rem, 1.4vw, 0.8rem);
   font-weight: bold;
   margin-bottom: 12px;
   color: white;
+  align-self: flex-start;
 }
 
 .verde { background: #4caf50; }
@@ -114,6 +152,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: auto;
+  padding-top: 10px;
 }
 
 /* Botón "Me gusta" */
@@ -121,12 +161,21 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 1.6vw, 0.9rem);
   transition: transform 0.2s, color 0.3s;
+  padding: 5px 10px;
+  border-radius: 5px;
+  touch-action: manipulation;
+  min-height: 44px; /* Accesibilidad táctil */
+  min-width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .like-btn:hover {
   transform: scale(1.1);
+  background: rgba(229, 57, 53, 0.1);
 }
 
 .like-btn.liked {
@@ -136,18 +185,255 @@
 
 /* Contador de visitas */
 .visitas {
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 1.4vw, 0.85rem);
   color: #555;
+  white-space: nowrap;
 }
 
-/* Responsivo */
-@media (max-width: 768px) {
-  .cards-container {
-    flex-direction: column;
-    align-items: center;
-  }
+/* Responsive Design */
 
-  .card {
-    width: 90%;
+/* Tablets grandes (1024px y menos) */
+@media (max-width: 1024px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
   }
+  
+  .emprendedores-container {
+    padding: 60px 15px;
+  }
+}
+
+/* Tablets medianas (768px y menos) */
+@media (max-width: 768px) {
+  .emprendedores-container {
+    padding: 40px 10px;
+  }
+  
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 18px;
+  }
+  
+  .filtros {
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+  
+  .filtros select {
+    min-width: 100px;
+    flex: 1;
+  }
+  
+  .card {
+    min-width: 250px;
+  }
+}
+
+/* Móviles grandes (600px y menos) */
+@media (max-width: 600px) {
+  .emprendedores-container {
+    padding: 30px 8px;
+  }
+  
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 400px;
+  }
+  
+  .card {
+    width: 100%;
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .filtros {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .filtros select {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    min-width: auto;
+  }
+  
+  .card-body {
+    padding: 12px;
+  }
+  
+  .card-actions {
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+/* Móviles pequeños (480px y menos) */
+@media (max-width: 480px) {
+  .emprendedores-container {
+    padding: 20px 5px;
+  }
+  
+  .emprendedores-container h1 {
+    margin-bottom: 15px;
+  }
+  
+  .cards-container {
+    padding: 0 5px;
+    max-width: 100%;
+  }
+  
+  .card {
+    border-radius: 10px;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-body h2 {
+    margin-bottom: 6px;
+  }
+  
+  .card-body h3 {
+    margin-bottom: 8px;
+  }
+  
+  .card-body p {
+    margin-bottom: 12px;
+    -webkit-line-clamp: 2;
+  }
+  
+  .badge {
+    margin-bottom: 8px;
+  }
+  
+  .like-btn {
+    min-height: 40px;
+    min-width: 40px;
+  }
+}
+
+/* Móviles muy pequeños (360px y menos) */
+@media (max-width: 360px) {
+  .emprendedores-container {
+    padding: 15px 3px;
+  }
+  
+  .cards-container {
+    padding: 0 3px;
+  }
+  
+  .filtros select {
+    font-size: 0.85rem;
+    padding: 8px 10px;
+  }
+  
+  .card-body {
+    padding: 8px;
+  }
+  
+  .card-actions {
+    gap: 5px;
+  }
+}
+
+/* Pantallas muy grandes (1440px y más) */
+@media (min-width: 1440px) {
+  .cards-container {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    max-width: 1600px;
+    gap: 30px;
+  }
+  
+  .emprendedores-container {
+    padding: 100px 40px;
+  }
+  
+  .card {
+    max-width: 380px;
+  }
+}
+
+/* Mejoras de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+  
+  .like-btn {
+    transition: none;
+  }
+  
+  .like-btn:hover {
+    transform: none;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+}
+
+/* Mejora para dispositivos táctiles */
+@media (hover: none) {
+  .card:hover {
+    transform: none;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  }
+  
+  .like-btn:hover {
+    transform: none;
+    background: transparent;
+  }
+}
+
+/* Estados de focus para accesibilidad */
+.like-btn:focus {
+  outline: 2px solid #1565c0;
+  outline-offset: 2px;
+}
+
+.filtros select:focus {
+  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.2);
+}
+
+/* Loading states si es necesario */
+.card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Estado vacío */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.empty-state img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+/* Animación sutil de carga */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeIn 0.4s ease-out;
 }

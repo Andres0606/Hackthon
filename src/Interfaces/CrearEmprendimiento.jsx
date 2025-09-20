@@ -192,7 +192,6 @@ const CrearEmprendimiento = () => {
 
               {/* Botones */}
               <div className="form-actions">
-                <button type="button" onClick={handleCancel} className="btn-secondary">Cancelar</button>
                 <button type="submit" className="btn-primary">🚀 Registrar</button>
               </div>
             </form>

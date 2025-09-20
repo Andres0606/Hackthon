@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ScrollToTop } from './Utilis/ScrollToTop.js';
 import EmprendedoresVillavicencio from './Interfaces/Inicio.jsx';
 
-import CrearEmprendimiento from './Interfaces/CrearEmprendimiento.jsx'; // Importar el componente
+import CrearEmprendimiento from './Interfaces/CrearEmprendimiento.jsx';
 
 //d
 import Catalogo from './Interfaces/Catalogo.jsx';
