@@ -2,7 +2,10 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ScrollToTop } from './Utilis/ScrollToTop.js';
 import EmprendedoresVillavicencio from './Interfaces/Inicio.jsx';
+<<<<<<< HEAD
 import CrearEmprendimiento from './Interfaces/CrearEmprendimiento.jsx'; // Importar el componente
+=======
+>>>>>>> d4ebc143e75e6cce476c4b263eebad46aa22e385
 import Catalogo from './Interfaces/Catalogo.jsx';
 import Eventos from './Interfaces/Eventos.jsx';
 import Financiamiento from './Interfaces/Financiamiento.jsx';

@@ -19,4 +19,24 @@ const findByEmail = async (email) => {
   return result.rows[0];
 };
 
-module.exports = { createUser, findByEmail };
+// Buscar usuario por id
+const findById = async (id) => {
+  const query = "SELECT id_usuario, nombre, apellido, email, telefono_usuario, rol FROM Usuarios WHERE id_usuario = $1";
+  const result = await pool.query(query, [id]);
+  return result.rows[0];
+};
+
+// Actualizar usuario
+const updateUser = async (id, nombre, apellido, email, telefono_usuario) => {
+  const query = `
+    UPDATE Usuarios
+    SET nombre = $1, apellido = $2, email = $3, telefono_usuario = $4
+    WHERE id_usuario = $5
+    RETURNING id_usuario, nombre, apellido, email, telefono_usuario, rol;
+  `;
+  const values = [nombre, apellido, email, telefono_usuario, id];
+  const result = await pool.query(query, values);
+  return result.rows[0];
+};
+
+module.exports = { createUser, findByEmail, findById, updateUser };
