@@ -84,9 +84,9 @@ const Header = ({ scrollToSection }) => {
             <li>
               <a onClick={() => handleNavigation("/inicio")}>Inicio</a>
             </li>
-            <li>
+            {/*<li>
               <a onClick={() => handleNavigation("/catalogo")}>Catálogo</a>
-            </li>
+            </li>*/}
           </ul>
           <input
             type="text"
