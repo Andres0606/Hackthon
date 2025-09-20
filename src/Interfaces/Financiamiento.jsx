@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './OportunidadesFinanciamiento.css';
+import '../Componentes/Financiamiento.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 
