@@ -1,5 +1,5 @@
 import React from 'react';
-import EmprendedoresVillavicencio from './Interfaces/Perfil.jsx';
+import EmprendedoresVillavicencio from './Interfaces/Financiamiento.jsx';
 
 function App() {
   return (
