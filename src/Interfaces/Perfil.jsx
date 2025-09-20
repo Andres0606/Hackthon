@@ -130,6 +130,9 @@ const Profile = () => {
           <button className="save-btn" onClick={handleSave}>
             Guardar Cambios
           </button>
+          <button className="save-btn" onClick={handleSave}>
+            Editar Perfil
+          </button>
         </div>
       </div>
     </div>
