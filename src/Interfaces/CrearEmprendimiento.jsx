@@ -21,18 +21,15 @@ const CrearEmprendimiento = () => {
 
   const categorias = [
     { value: '', label: 'Selecciona una categoría' },
-    { value: 'gastronomia', label: 'Gastronomía' },
-    { value: 'artesania', label: 'Artesanía' },
-    { value: 'moda', label: 'Moda' },
-    { value: 'Mixta', label: 'Mixta' },
-    { value: 'joyeria', label: 'Joyería' },
-    { value: 'otros', label: 'Otros' }
+    { value: 'Fisica', label: 'Física' },
+    { value: 'Digital', label: 'Digital' },
+    { value: 'Mixta', label: 'Mixta' }
   ];
 
   const estadosCamara = [
     { value: '', label: 'Selecciona el estado' },
     { value: 'Formalizado', label: 'Formalizado' },
-    { value: 'En proceso de obtenerla', label: 'En proceso de obtenerla' },
+    { value: 'En Proceso', label: 'En proceso de obtenerla' },
     { value: 'Por Formalizar', label: 'No tiene (Por Formalizar)' }
   ];
 
@@ -82,7 +79,10 @@ const CrearEmprendimiento = () => {
           sector: formData.sector || formData.categoria,
           estado_formalizacion: formData.camaraComercio || 'Por Formalizar',
           logo_url: formData.logo_url || null,
-          descripcion: formData.descripcion
+          descripcion: formData.descripcion,
+
+          // 👇 Enviar el id del usuario logueado
+          id_usuario: sessionStorage.getItem("userId")
         })
       });
 
