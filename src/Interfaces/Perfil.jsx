@@ -175,17 +175,6 @@ const Perfil = () => {
           </div>
 
           <div className="form-group">
-            <label>Dirección</label>
-            <input
-              type="text"
-              name="direccion"
-              value={formData.direccion}
-              onChange={handleChange}
-              placeholder="Barrio, dirección en Villavicencio"
-            />
-          </div>
-
-          <div className="form-group">
             <label>Redes Sociales</label>
             <input
               type="text"
@@ -213,8 +202,6 @@ const Perfil = () => {
     informacion: [
       { id: 'datos-personales', icon: '👤', label: 'Datos Personales' },
       { id: 'contacto', icon: '📞', label: 'Información de Contacto' },
-      { id: 'direccion', icon: '📍', label: 'Dirección' },
-      { id: 'documentos', icon: '📄', label: 'Documentos' }
     ],
     emprendimiento: tieneEmprendimiento ? [
       { id: 'mi-emprendimiento', icon: '🏢', label: 'Mi Emprendimiento' },
