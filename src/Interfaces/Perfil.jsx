@@ -320,6 +320,49 @@ const Perfil = () => {
     };
 
     const content = contentMap[selectedMenu];
+    // Dentro de renderMainContent, cuando selectedMenu === 'datos-personales'
+if (selectedMenu === 'datos-personales') {
+  return (
+    <div className="main-content-area fade-in">
+      <h2 style={{ color: '#0D47A1', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <span>👤</span> Datos Personales
+      </h2>
+      <form className="perfil-form">
+        <div className="form-row">
+          <div className="form-group">
+            <label>Nombre</label>
+            <input type="text" name="nombre" placeholder="Ingresa tu nombre" />
+          </div>
+          <div className="form-group">
+            <label>Apellido</label>
+            <input type="text" name="apellido" placeholder="Ingresa tu apellido" />
+          </div>
+        </div>
+
+        <div className="form-row">
+          <div className="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="correo@ejemplo.com" />
+          </div>
+          <div className="form-group">
+            <label>Contraseña</label>
+            <input type="password" name="contrasena" placeholder="********" />
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label>Teléfono</label>
+          <input type="tel" name="telefono_usuario" placeholder="300 123 4567" />
+        </div>
+
+        <div className="form-actions">
+          <button type="submit" className="btn-primary">💾 Guardar cambios</button>
+        </div>
+      </form>
+    </div>
+  );
+}
+
 
     // Si es el formulario de crear emprendimiento, mostrar formulario especial
     if (content.isEmprendimientoForm) {
