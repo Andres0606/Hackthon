@@ -95,7 +95,7 @@ const Main = () => {
                   </div>
                   <button 
                     className="info-button"
-                    onClick={() => handleNavigation('/catalogo')}
+                    onClick={() => handleNavigation('/Emprendedores')}
                   >
                     Ver más
                   </button>
