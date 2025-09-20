@@ -1,0 +1,512 @@
+/* OportunidadesFinanciamiento.css */
+.oportunidades-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding-top: 80px;
+}
+
+.oportunidades-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+  z-index: 1;
+}
+
+.oportunidades-header {
+  background: linear-gradient(135deg, #0D47A1 0%, #1565C0 50%, #00695C 100%);
+  color: white;
+  padding: 2rem 2rem 3rem 2rem;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 8px 30px rgba(13, 71, 161, 0.4);
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+  z-index: 1;
+}
+
+.oportunidades-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.05)"><polygon points="0,100 1000,0 1000,100"/></svg>');
+  pointer-events: none;
+}
+
+.oportunidades-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.oportunidades-title .left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+  min-width: 300px;
+}
+
+.oportunidades-title h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(45deg, #ffffff, #00E676);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.impulso-villavo {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  font-weight: 600;
+  backdrop-filter: blur(15px);
+  border: 2px solid rgba(0, 230, 118, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.impulso-villavo:hover {
+  background: rgba(0, 230, 118, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(0, 230, 118, 0.3);
+}
+
+.buscador-container {
+  position: relative;
+  flex: 1;
+  max-width: 400px;
+  min-width: 280px;
+  margin-left: auto;
+}
+
+.buscador {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  outline: none;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
+
+.buscador:focus {
+  box-shadow: 0 6px 30px rgba(0, 230, 118, 0.4);
+  transform: translateY(-2px);
+  background: white;
+}
+
+.buscador::placeholder {
+  color: #666;
+}
+
+.oportunidades-nav {
+  background: white;
+  padding: 1.5rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  border-left: 6px solid #00E676;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  position: relative;
+  overflow: hidden;
+  flex-wrap: wrap;
+}
+
+.oportunidades-nav::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #00E676, #00C853, #0D47A1);
+}
+
+.nav-item {
+  padding: 0.8rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #0D47A1;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.nav-item.active {
+  color: white;
+  background: linear-gradient(45deg, #00E676, #00C853);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.4);
+}
+
+.nav-item:hover {
+  color: white;
+  background: linear-gradient(45deg, #00E676, #00C853);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.4);
+}
+
+.oportunidades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2.5rem;
+  padding: 3rem 2rem;
+  background: white;
+  border-radius: 0 0 20px 20px;
+  min-height: 500px;
+  position: relative;
+}
+
+.oportunidades-grid::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #00E676, transparent);
+}
+
+.oportunidad-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.oportunidad-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(13, 71, 161, 0.02), rgba(0, 230, 118, 0.02));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.oportunidad-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #0D47A1, #00695C, #00E676);
+}
+
+.oportunidad-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  border-color: #00E676;
+}
+
+.oportunidad-card:hover::before {
+  opacity: 1;
+}
+
+.oportunidad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.oportunidad-titulo {
+  color: #0D47A1;
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  flex: 1;
+}
+
+.estado-badge {
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.estado-abierta { background: #00E676; }
+.estado-disponible { background: #00C853; }
+.estado-proximamente { background: #FF9800; }
+.estado-evaluacion { background: #2196F3; }
+
+.oportunidad-descripcion {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.oportunidad-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.info-item strong {
+  color: #0D47A1;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.info-item div {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.requisitos-section {
+  margin-bottom: 1.5rem;
+}
+
+.requisitos-title {
+  color: #0D47A1;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.requisitos-list {
+  color: #666;
+  font-size: 0.85rem;
+}
+
+.requisito-item {
+  margin-bottom: 0.2rem;
+}
+
+.oportunidad-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.btn-detalles {
+  flex: 1;
+  background: linear-gradient(45deg, #00E676, #00C853);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-detalles:hover {
+  background: linear-gradient(45deg, #00C853, #00A152);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 230, 118, 0.4);
+}
+
+.btn-contactar {
+  background: #f5f5f5;
+  color: #666;
+  border: 2px solid #ddd;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.btn-contactar:hover {
+  background: #eeeeee;
+  border-color: #ccc;
+}
+
+/* Animaciones */
+.fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efectos de entrada escalonados */
+.oportunidad-card:nth-child(1) { animation-delay: 0.1s; }
+.oportunidad-card:nth-child(2) { animation-delay: 0.2s; }
+.oportunidad-card:nth-child(3) { animation-delay: 0.3s; }
+.oportunidad-card:nth-child(4) { animation-delay: 0.4s; }
+.oportunidad-card:nth-child(5) { animation-delay: 0.5s; }
+.oportunidad-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .oportunidades-wrapper {
+    padding-top: 70px;
+  }
+  
+  .oportunidades-container {
+    padding: 0 1rem 1rem 1rem;
+  }
+  
+  .oportunidades-header {
+    padding: 1.5rem 1rem 2rem 1rem;
+    margin-top: 0;
+  }
+  
+  .oportunidades-title {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    align-items: center;
+  }
+  
+  .oportunidades-title .left-section {
+    align-items: center;
+    text-align: center;
+    min-width: auto;
+    width: 100%;
+  }
+  
+  .oportunidades-title h1 {
+    font-size: 2.2rem;
+  }
+  
+  .buscador-container {
+    max-width: 100%;
+    min-width: auto;
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .buscador {
+    font-size: 0.95rem;
+    padding: 0.9rem 1.2rem;
+  }
+  
+  .oportunidades-nav {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem 1rem;
+  }
+  
+  .oportunidades-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 1rem;
+  }
+  
+  .oportunidad-info {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .oportunidades-wrapper {
+    padding-top: 75px;
+  }
+  
+  .oportunidades-title {
+    gap: 1.5rem;
+  }
+  
+  .oportunidades-title h1 {
+    font-size: 2.5rem;
+  }
+  
+  .buscador-container {
+    max-width: 350px;
+    min-width: 250px;
+  }
+  
+  .oportunidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .oportunidades-title h1 {
+    font-size: 1.8rem;
+  }
+  
+  .impulso-villavo {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .buscador {
+    font-size: 0.9rem;
+    padding: 0.8rem 1rem;
+  }
+  
+  .oportunidad-actions {
+    flex-direction: column;
+  }
+}
+
+/* Asegura que no haya espacios en blanco */
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+@media (min-width: 1025px) {
+  .oportunidades-wrapper {
+    padding-top: 90px;
+  }
+}
+
+/* Elimina cualquier gap o espacio no deseado */
+.oportunidades-wrapper {
+  display: block;
+  position: relative;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Mejora de accesibilidad */
+.nav-item:focus,
+.buscador:focus {
+  outline: 3px solid #00E676;
+  outline-offset: 2px;
+}
