@@ -7,7 +7,7 @@ const pool = new Pool({
   password: "123",       
   port: 5432,
 });
-
+//s
 pool.connect()
   .then(() => console.log("✅ Conectado a PostgreSQL"))
   .catch((err) => console.error("❌ Error de conexión", err));

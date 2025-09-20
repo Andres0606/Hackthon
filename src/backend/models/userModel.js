@@ -12,7 +12,7 @@ const createUser = async (nombre, apellido, email, contrasena, telefono_usuario,
   return result.rows[0];
 };
 
-// Buscar usuario por email
+// Buscar usuario por emails
 const findByEmail = async (email) => {
   const query = "SELECT * FROM Usuarios WHERE email = $1";
   const result = await pool.query(query, [email]);
