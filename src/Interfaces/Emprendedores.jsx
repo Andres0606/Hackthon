@@ -17,14 +17,15 @@ const Emprendedores = () => {
     const fetchEmpresas = async () => {
       try {
         const res = await fetch("http://localhost:5000/api/empresas");
+
+        if (!res.ok) throw new Error(`Error HTTP: ${res.status}`);
+
         const data = await res.json();
-        if (data.success) {
-          setEmpresas(data.data);
-        } else {
-          console.error("Error al obtener empresas:", data.message);
-        }
+        console.log("✅ Empresas recibidas:", data);
+
+        setEmpresas(data); // 👈 Backend devuelve un array, no un objeto { success, data }
       } catch (error) {
-        console.error("Error de conexión con backend:", error);
+        console.error("❌ Error al obtener empresas:", error);
       }
     };
 
@@ -130,6 +131,11 @@ const Emprendedores = () => {
               </div>
             </div>
           ))}
+
+          {/* Si no hay empresas */}
+          {filtrados.length === 0 && (
+            <p className="no-data">⚠️ No hay empresas que coincidan con los filtros.</p>
+          )}
         </div>
       </div>
       <Footer />
