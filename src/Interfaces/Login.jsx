@@ -34,7 +34,10 @@ const Login = () => {
         alert("✅ Bienvenido " + data.user.nombre);
         console.log("Usuario logueado:", data);
 
-        navigate("/inicio"); // 👈 Redirige al inicio
+        // 👉 Guardamos SOLO el id en sessionStorage
+        sessionStorage.setItem("userId", data.user.id_usuario);
+
+        navigate("/inicio"); // Redirige al inicio
       } else {
         alert(`⚠️ Error: ${data.message}`);
       }
