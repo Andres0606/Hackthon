@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Componentes/Perfil.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 
 const Profile = () => {
+  const navigate = useNavigate(); // Hook para navegación
   const [profileImage, setProfileImage] = useState(null);
   const [formData, setFormData] = useState({
     nombre: '',
@@ -87,9 +89,9 @@ const Profile = () => {
     console.log('Editando perfil...');
   };
 
+  // 👉 Navegar a la página de crear emprendimiento
   const handleCreateEntrepreneurship = () => {
-    console.log('Creando emprendimiento...');
-    // Aquí puedes agregar la lógica para navegar a la página de creación de emprendimiento
+    navigate('/crear-emprendimiento');
   };
 
   const triggerFileInput = () => {
