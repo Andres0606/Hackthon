@@ -6,6 +6,7 @@ import { FaBell, FaUserCircle } from "react-icons/fa";
 const Header = ({ scrollToSection }) => {
   const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
+  const [showUserPanel, setShowUserPanel] = useState(false);
   const [unreadCount, setUnreadCount] = useState(3); // Contador de no leídas
 
   // Función para navegar a diferentes páginas
@@ -35,11 +36,34 @@ const Header = ({ scrollToSection }) => {
     { id: 3, message: "Recordatorio: reunión mañana", time: "hace 2 días" }
   ];
 
+  // Función para alternar el panel de usuario
+  const toggleUserPanel = () => {
+    setShowUserPanel(!showUserPanel);
+  };
+
+  // Función para cerrar el panel de usuario
+  const closeUserPanel = () => {
+    setShowUserPanel(false);
+  };
+
+  // Función para ir al perfil
+  const goToProfile = () => {
+    navigate("/perfil");
+    closeUserPanel();
+  };
+
+  // Función para cerrar sesión
+  const logout = () => {
+    sessionStorage.removeItem("userId");
+    navigate("/inicio");
+    closeUserPanel();
+  };
+
   // ✅ Validar sesión al dar click en el icono de usuario
   const handleUserClick = () => {
     const userId = sessionStorage.getItem("userId");
     if (userId) {
-      navigate("/perfil"); // Si ya está logueado 👉 va a Perfil
+      toggleUserPanel(); // Si está logueado 👉 muestra el panel
     } else {
       navigate("/login"); // Si no está logueado 👉 va a Login
     }
@@ -120,11 +144,40 @@ const Header = ({ scrollToSection }) => {
             )}
           </div>
           
-          {/* 👤 Icono usuario con validación de sesión */}
-          <FaUserCircle 
-            className="icon user" 
-            onClick={handleUserClick}
-          />
+          {/* 👤 Icono usuario con validación de sesión y panel desplegable */}
+          <div className="user-container">
+            <FaUserCircle 
+              className="icon user" 
+              onClick={handleUserClick}
+            />
+            
+            {showUserPanel && (
+              <div className="user-panel">
+                <div className="user-panel-header">
+                  <button 
+                    className="close-btn"
+                    onClick={closeUserPanel}
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="user-panel-content">
+                  <button 
+                    className="user-panel-option"
+                    onClick={goToProfile}
+                  >
+                    Perfil
+                  </button>
+                  <button 
+                    className="user-panel-option logout"
+                    onClick={logout}
+                  >
+                    Cerrar Sesión
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </nav>
     </header>
