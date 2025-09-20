@@ -289,6 +289,129 @@
   box-shadow: 0 2px 8px rgba(21, 101, 192, 0.3);
 }
 
+/* =============================================== */
+/* ESTILOS PARA EL PANEL DE USUARIO - NUEVO 🔥 */
+/* =============================================== */
+
+.user-container {
+  position: relative;
+}
+
+.user-panel {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.8rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  width: 200px;
+  overflow: hidden;
+  z-index: 1001;
+  border: 1px solid rgba(255,255,255,0.2);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-panel-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.8rem 1rem 0.4rem 1rem;
+  background: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
+}
+
+.user-panel-content {
+  padding: 0.5rem 0;
+  background: white;
+}
+
+.user-panel-option {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.user-panel-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(21, 101, 192, 0.1), transparent);
+  transition: left 0.3s ease;
+}
+
+.user-panel-option:hover::before {
+  left: 100%;
+}
+
+.user-panel-option:hover {
+  background: rgba(21, 101, 192, 0.08);
+  color: #1565C0;
+  padding-left: 1.5rem;
+}
+
+/* Iconos para las opciones */
+.user-panel-option:first-child::after {
+  content: "👤";
+  font-size: 1rem;
+  margin-left: auto;
+}
+
+.user-panel-option.logout::after {
+  content: "🚪";
+  font-size: 1rem;
+  margin-left: auto;
+}
+
+/* Estilo especial para cerrar sesión */
+.user-panel-option.logout {
+  border-top: 1px solid #f0f0f0;
+  color: #e74c3c;
+  font-weight: 600;
+}
+
+.user-panel-option.logout:hover {
+  background: rgba(231, 76, 60, 0.1);
+  color: #c0392b;
+}
+
+/* Mejora para el botón de cerrar del panel */
+.user-panel .close-btn {
+  width: 20px;
+  height: 20px;
+  font-size: 1.1rem;
+}
+
+.user-panel .close-btn:hover {
+  background: rgba(255,255,255,0.3);
+  transform: rotate(90deg);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .nav-container {
@@ -319,11 +442,21 @@
     width: 300px;
     right: -50px;
   }
+  
+  .user-panel {
+    width: 180px;
+    right: -20px;
+  }
 }
 
 @media (max-width: 480px) {
   .notifications-panel {
     width: 280px;
     right: -100px;
+  }
+  
+  .user-panel {
+    width: 160px;
+    right: -40px;
   }
 }
