@@ -1,14 +1,20 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
-const userRouter = require("./routes/userRouters");
-const empresaRouter = require("./routes/empresaRouter");
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import userRouter from "./routes/userRouters.js";
+import empresaRouter from "./routes/empresaRouter.js";
+import pool from "./config/db.js";
 
 dotenv.config();
-
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+
+// 🔌 Conexión con PostgreSQL
+pool.connect()
+  .then(() => console.log("✅ Conectado a PostgreSQL"))
+  .catch(err => console.error("❌ Error de conexión a PostgreSQL:", err));
 
 // Rutas
 app.use("/api/users", userRouter);

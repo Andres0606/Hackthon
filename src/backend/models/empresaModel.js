@@ -1,152 +1,68 @@
-const pool = require("../config/db");
+import pool from "../config/db.js";
 
 class Empresa {
-  // Crear nueva empresa
-  static async crear(datosEmpresa, id_usuario = null, descripcion = null) {
-    const client = await pool.connect();
+  static async crear(data) {
+    const query = `
+      INSERT INTO Empresas 
+      (tipoempresa, nombre_empresa, nit, razon_social, direccion, telefonoempresa, email_contacto, sector, estado_formalizacion, logo_url)
+      VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
+      RETURNING *;
+    `;
+    const values = [
+      data.tipoEmpresa,
+      data.nombre_empresa,
+      data.nit,
+      data.razon_social,
+      data.direccion,
+      data.telefonoEmpresa,
+      data.email_contacto,
+      data.sector,
+      data.estado_formalizacion,
+      data.logo_url
+    ];
 
-    try {
-      await client.query("BEGIN");
+    const result = await pool.query(query, values);
+    const empresa = result.rows[0];
 
-      const {
-        tipoEmpresa,
-        nombre_empresa,
-        nit,
-        razon_social,
-        direccion,
-        telefonoEmpresa,
-        email_contacto,
-        sector,
-        estado_formalizacion,
-        logo_url,
-      } = datosEmpresa;
+    // 👇 Verificamos si el usuario ya existe en Emprendedores
+    if (data.id_usuario) {
+      const check = await pool.query(
+        "SELECT * FROM Emprendedores WHERE id_usuario = $1",
+        [data.id_usuario]
+      );
 
-      const empresaQuery = `
-        INSERT INTO Empresas (
-          tipoEmpresa, 
-          nombre_empresa, 
-          nit, 
-          razon_social, 
-          direccion, 
-          telefonoEmpresa, 
-          email_contacto, 
-          sector, 
-          estado_formalizacion, 
-          logo_url
-        ) 
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)
-        RETURNING *
-      `;
-
-      const empresaValues = [
-        tipoEmpresa,
-        nombre_empresa,
-        nit,
-        razon_social,
-        direccion,
-        telefonoEmpresa,
-        email_contacto,
-        sector,
-        estado_formalizacion || "Por Formalizar",
-        logo_url,
-      ];
-
-      const empresaResult = await client.query(empresaQuery, empresaValues);
-      const nuevaEmpresa = empresaResult.rows[0];
-
-      // Relación en Emprendedores (opcional)
-      if (id_usuario) {
-        await client.query(
-          "INSERT INTO Emprendedores (id_usuario, id_empresa, descripcion) VALUES ($1,$2,$3)",
-          [id_usuario, nuevaEmpresa.id_empresa, descripcion]
+      if (check.rows.length === 0) {
+        // Si no existe, lo creamos y mostramos en consola
+        const nuevo = await pool.query(
+          `INSERT INTO Emprendedores (id_usuario, id_empresa) VALUES ($1, $2) RETURNING *`,
+          [data.id_usuario, empresa.id_empresa]
+        );
+        const emprendedor = nuevo.rows[0];
+        console.log("✅ Emprendedor guardado");
+        console.log(
+          `id_emprendedor: ${emprendedor.id_emprendedor}, id_usuario: ${emprendedor.id_usuario}, id_empresa: ${emprendedor.id_empresa}`
+        );
+      } else {
+        // Si ya existe, actualizamos la empresa y mostramos en consola
+        const actualizado = await pool.query(
+          `UPDATE Emprendedores SET id_empresa = $1 WHERE id_usuario = $2 RETURNING *`,
+          [empresa.id_empresa, data.id_usuario]
+        );
+        const emprendedor = actualizado.rows[0];
+        console.log("🔄 Emprendedor actualizado");
+        console.log(
+          `id_emprendedor: ${emprendedor.id_emprendedor}, id_usuario: ${emprendedor.id_usuario}, id_empresa: ${emprendedor.id_empresa}`
         );
       }
-
-      await client.query("COMMIT");
-      return nuevaEmpresa;
-    } catch (error) {
-      await client.query("ROLLBACK");
-      throw error;
-    } finally {
-      client.release();
     }
+
+    return empresa;
   }
 
-  // Obtener todas
   static async obtenerTodas() {
-    const query = `SELECT * FROM Empresas ORDER BY fecha_creada DESC`;
-    const result = await pool.query(query);
-    return result.rows;
-  }
-
-  // Obtener por ID
-  static async obtenerPorId(id) {
-    const query = `SELECT * FROM Empresas WHERE id_empresa = $1`;
-    const result = await pool.query(query, [id]);
-    return result.rows[0];
-  }
-
-  // Actualizar
-  static async actualizar(id, datosActualizados) {
-    const campos = [];
-    const valores = [];
-    let contador = 1;
-
-    for (const [campo, valor] of Object.entries(datosActualizados)) {
-      if (valor !== undefined && valor !== null) {
-        campos.push(`${campo} = $${contador}`);
-        valores.push(valor);
-        contador++;
-      }
-    }
-
-    if (campos.length === 0) return null;
-
-    const query = `
-      UPDATE Empresas
-      SET ${campos.join(", ")}
-      WHERE id_empresa = $${contador}
-      RETURNING *
-    `;
-    valores.push(id);
-
-    const result = await pool.query(query, valores);
-    return result.rows[0];
-  }
-
-  // Eliminar
-  static async eliminar(id) {
-    const query = `DELETE FROM Empresas WHERE id_empresa = $1 RETURNING *`;
-    const result = await pool.query(query, [id]);
-    return result.rows[0];
-  }
-
-  // Buscar
-  static async buscar(filtros) {
-    let query = `SELECT * FROM Empresas WHERE 1=1`;
-    const valores = [];
-    let contador = 1;
-
-    if (filtros.sector) {
-      query += ` AND sector ILIKE $${contador}`;
-      valores.push(`%${filtros.sector}%`);
-      contador++;
-    }
-    if (filtros.tipoEmpresa) {
-      query += ` AND tipoEmpresa = $${contador}`;
-      valores.push(filtros.tipoEmpresa);
-      contador++;
-    }
-    if (filtros.estado_formalizacion) {
-      query += ` AND estado_formalizacion = $${contador}`;
-      valores.push(filtros.estado_formalizacion);
-      contador++;
-    }
-
-    query += ` ORDER BY fecha_creada DESC`;
-    const result = await pool.query(query, valores);
+    const result = await pool.query("SELECT * FROM Empresas ORDER BY id_empresa DESC");
     return result.rows;
   }
 }
 
-module.exports = Empresa;
+export default Empresa;

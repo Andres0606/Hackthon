@@ -1,25 +1,9 @@
-const express = require("express");
+import express from "express";
+import { crearEmpresa, obtenerEmpresas } from "../controllers/empresaController.js";
+
 const router = express.Router();
-const {
-  crearEmpresa,
-  obtenerTodasLasEmpresas,
-  obtenerEmpresaPorId,
-  actualizarEmpresa,
-  eliminarEmpresa,
-  buscarEmpresasPublicas,
-} = require("../controllers/empresaController");
 
-// Rutas públicas
-router.get("/publicas", buscarEmpresasPublicas); // GET /api/empresas/publicas
+router.post("/", crearEmpresa);
+router.get("/", obtenerEmpresas);
 
-// Rutas CRUD
-router.route("/")
-  .get(obtenerTodasLasEmpresas)   // GET /api/empresas
-  .post(crearEmpresa);            // POST /api/empresas
-
-router.route("/:id")
-  .get(obtenerEmpresaPorId)       // GET /api/empresas/:id
-  .put(actualizarEmpresa)         // PUT /api/empresas/:id
-  .delete(eliminarEmpresa);       // DELETE /api/empresas/:id
-
-module.exports = router;
+export default router;
