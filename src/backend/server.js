@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const userRouter = require("./routes/userRouters");
+const empresaRouter = require("./routes/empresaRouter");
 
 dotenv.config();
 
@@ -11,6 +12,7 @@ app.use(express.json());
 
 // Rutas
 app.use("/api/users", userRouter);
+app.use("/api/empresas", empresaRouter);
 
 // Ruta de prueba
 app.get("/", (req, res) => {

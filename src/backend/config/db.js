@@ -4,7 +4,7 @@ const pool = new Pool({
   user: "postgres",       // 👈 tu usuario PostgreSQL
   host: "localhost",      // 👈 servidor BD
   database: "Hackaton2.0",// 👈 nombre BD
-  password: "Daniel_SQL@12",        // 👈 tu contraseña fija
+  password: "123",        // 👈 tu contraseña fija
   port: 5432,
 });
 
