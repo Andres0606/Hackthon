@@ -35,6 +35,15 @@ const Profile = () => {
     console.log('Datos guardados:', formData);
   };
 
+  const handleEdit = () => {
+    console.log('Editando perfil...');
+  };
+
+  const handleCreateEntrepreneurship = () => {
+    console.log('Creando emprendimiento...');
+    // Aquí puedes agregar la lógica para navegar a la página de creación de emprendimiento
+  };
+
   const triggerFileInput = () => {
     document.getElementById('fileInput').click();
   };
@@ -60,6 +69,12 @@ const Profile = () => {
           
           <button className="upload-btn" onClick={triggerFileInput}>
             Subir Foto
+          </button>
+          
+          {/* Botón Crear Emprendimiento */}
+          <button className="create-entrepreneurship-btn" onClick={handleCreateEntrepreneurship}>
+            <span className="btn-icon">🚀</span>
+            Crear Emprendimiento
           </button>
           
           <input
@@ -127,12 +142,17 @@ const Profile = () => {
             </div>
           </div>
           
-          <button className="save-btn" onClick={handleSave}>
-            Guardar Cambios
-          </button>
-          <button className="save-btn" onClick={handleSave}>
-            Editar Perfil
-          </button>
+          {/* Botones mejorados */}
+          <div className="button-container">
+            <button className="save-btn primary-btn" onClick={handleSave}>
+              <span className="btn-icon">💾</span>
+              Guardar Cambios
+            </button>
+            <button className="edit-btn secondary-btn" onClick={handleEdit}>
+              <span className="btn-icon">✏️</span>
+              Editar Perfil
+            </button>
+          </div>
         </div>
       </div>
     </div>
