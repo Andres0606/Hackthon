@@ -6,6 +6,7 @@ import { FaBell, FaUserCircle } from "react-icons/fa";
 const Header = ({ scrollToSection }) => {
   const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(3); // Contador de no leídas
 
   // Función para navegar a diferentes páginas
   const handleNavigation = (path) => {
@@ -15,6 +16,17 @@ const Header = ({ scrollToSection }) => {
   // Función para alternar el panel de notificaciones
   const toggleNotifications = () => {
     setShowNotifications(!showNotifications);
+    // Ya no hay timeout automático - solo marcado manual
+  };
+
+  // Función para cerrar notificaciones
+  const closeNotifications = () => {
+    setShowNotifications(false);
+  };
+
+  // Función para marcar como leídas manualmente
+  const markAsRead = () => {
+    setUnreadCount(0);
   };
 
   // Datos de ejemplo para notificaciones
@@ -57,8 +69,9 @@ const Header = ({ scrollToSection }) => {
               className="icon bell" 
               onClick={toggleNotifications}
             />
-            {notifications.length > 0 && (
-              <span className="notification-badge">{notifications.length}</span>
+            {/* Solo mostrar badge si hay notificaciones no leídas */}
+            {unreadCount > 0 && (
+              <span className="notification-badge">{unreadCount}</span>
             )}
             
             {/* Panel de notificaciones */}
@@ -68,7 +81,7 @@ const Header = ({ scrollToSection }) => {
                   <h4>Notificaciones</h4>
                   <button 
                     className="close-btn"
-                    onClick={() => setShowNotifications(false)}
+                    onClick={closeNotifications}
                   >
                     ×
                   </button>
@@ -85,6 +98,18 @@ const Header = ({ scrollToSection }) => {
                     <p className="no-notifications">No hay notificaciones</p>
                   )}
                 </div>
+                
+                {/* Botón para marcar todas como leídas */}
+                {unreadCount > 0 && (
+                  <div className="notifications-footer">
+                    <button 
+                      className="mark-read-btn"
+                      onClick={markAsRead}
+                    >
+                      Marcar todas como leídas
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
