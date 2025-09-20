@@ -5,7 +5,7 @@ import EmprendedoresVillavicencio from './Interfaces/Inicio.jsx';
 
 import CrearEmprendimiento from './Interfaces/CrearEmprendimiento.jsx'; // Importar el componente
 
-
+//d
 import Catalogo from './Interfaces/Catalogo.jsx';
 import Eventos from './Interfaces/Eventos.jsx';
 import Financiamiento from './Interfaces/Financiamiento.jsx';
