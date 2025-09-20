@@ -160,42 +160,116 @@ body {
   min-height: auto;
 }
 
-/* Image placeholders con colores específicos */
-.card-image-placeholder {
+/* Card info sections - Clean informative design */
+.card-info-section {
+  padding: 20px 0;
+}
+
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border-left: 4px solid #3498db;
+  transition: all 0.2s ease;
+}
+
+.info-item:hover {
+  background: #e3f2fd;
+  transform: translateX(5px);
+}
+
+.info-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.info-text {
+  flex: 1;
+}
+
+.info-text strong {
+  display: block;
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+
+.info-text p {
+  font-size: 0.9rem;
+  color: #5a6c7d;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.info-button {
   width: 100%;
-  height: 200px;
-  border-radius: 12px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 16px;
+  padding: 12px 20px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.card-red {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+.info-button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
 }
 
-.card-yellow {
-  background: linear-gradient(135deg, #ffd93d 0%, #ff9a9e 100%);
+/* Personalization for each card */
+.card:nth-child(1) .info-item {
+  border-left-color: #e74c3c;
 }
 
-.card-green {
-  background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+.card:nth-child(1) .info-button {
+  background: #e74c3c;
 }
 
-.camera-icon {
-  font-size: 28px;
-  opacity: 0.8;
-  color: rgba(255, 255, 255, 0.9);
-  background: rgba(0, 0, 0, 0.1);
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  backdrop-filter: blur(10px);
+.card:nth-child(1) .info-button:hover {
+  background: #c0392b;
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.card:nth-child(2) .info-item {
+  border-left-color: #f39c12;
+}
+
+.card:nth-child(2) .info-button {
+  background: #f39c12;
+}
+
+.card:nth-child(2) .info-button:hover {
+  background: #e67e22;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+}
+
+.card:nth-child(3) .info-item {
+  border-left-color: #27ae60;
+}
+
+.card:nth-child(3) .info-button {
+  background: #27ae60;
+}
+
+.card:nth-child(3) .info-button:hover {
+  background: #229954;
+  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
 }
 
 /* Features Section */
@@ -213,11 +287,40 @@ body {
   font-weight: 700;
 }
 
+/* Grid personalizado para features - 3 arriba, 2 abajo centradas */
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-  margin-top: 40px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Primera fila: 3 tarjetas */
+.feature-card:nth-child(1) {
+  grid-column: 1 / 3;
+}
+
+.feature-card:nth-child(2) {
+  grid-column: 3 / 5;
+}
+
+.feature-card:nth-child(3) {
+  grid-column: 5 / 7;
+}
+
+/* Segunda fila: 2 tarjetas centradas y más juntas */
+.feature-card:nth-child(4) {
+  grid-column: 2 / 4;
+  grid-row: 2;
+  justify-self: end;
+}
+
+.feature-card:nth-child(5) {
+  grid-column: 4 / 6;
+  grid-row: 2;
+  justify-self: start;
 }
 
 .feature-card {
@@ -258,18 +361,9 @@ body {
   font-size: 1rem;
 }
 
-/* Animaciones adicionales */
-.card-image-placeholder {
+/* Animaciones para cards */
+.card {
   transition: all 0.3s ease;
-}
-
-.card:hover .card-image-placeholder {
-  transform: scale(1.02);
-}
-
-.card:hover .camera-icon {
-  transform: scale(1.1);
-  opacity: 1;
 }
 
 /* Responsive design */
@@ -280,8 +374,14 @@ body {
   }
   
   .features-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 28px;
+  }
+  
+  .feature-card:nth-child(4),
+  .feature-card:nth-child(5) {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 
@@ -327,6 +427,12 @@ body {
   .features-grid {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+  
+  .feature-card:nth-child(4),
+  .feature-card:nth-child(5) {
+    grid-column: auto;
+    grid-row: auto;
   }
   
   .card-content {

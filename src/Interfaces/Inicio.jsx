@@ -46,11 +46,6 @@ const Main = () => {
               <p>Accede a convocatorias, ferias y eventos exclusivos para emprendedores de la ciudad.</p>
             </div>
             <div className="feature-card">
-              <span className="feature-icon">🛡️</span>
-              <h3>Plataforma Segura</h3>
-              <p>Respaldada por la Alcaldía de Villavicencio, con verificación de emprendedores y transacciones seguras.</p>
-            </div>
-            <div className="feature-card">
               <span className="feature-icon">📱</span>
               <h3>Fácil de Usar</h3>
               <p>Interfaz intuitiva y amigable. Publica en minutos desde cualquier dispositivo.</p>
@@ -62,32 +57,101 @@ const Main = () => {
       {/* Main Content */}
         <main className="content">
           <div className="cards-container">
-            {/* Card 1 */}
+            {/* Card 1 - Info Card */}
             <div className="card">
               <div className="card-content">
                 <h2 className="card-title">Conoce emprendedores locales</h2>
-                <div className="card-image-placeholder card-red">
-                  <div className="camera-icon">📷</div>
+                <div className="card-info-section">
+                  <div className="info-list">
+                    <div className="info-item">
+                      <span className="info-icon">🏪</span>
+                      <div className="info-text">
+                        <strong>Tiendas locales</strong>
+                        <p>Productos artesanales, comida típica y servicios únicos</p>
+                      </div>
+                    </div>
+                    <div className="info-item">
+                      <span className="info-icon">🤝</span>
+                      <div className="info-text">
+                        <strong>Networking</strong>
+                        <p>Conecta con otros empresarios de la región</p>
+                      </div>
+                    </div>
+                    <div className="info-item">
+                      <span className="info-icon">📍</span>
+                      <div className="info-text">
+                        <strong>Villavicencio y Meta</strong>
+                        <p>Encuentra negocios cerca de ti</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button className="info-button">Ver más</button>
                 </div>
               </div>
             </div>
 
-            {/* Card 2 */}
+            {/* Card 2 - Events Info */}
             <div className="card">
               <div className="card-content">
                 <h2 className="card-title">Próximos eventos / convocatorias</h2>
-                <div className="card-image-placeholder card-yellow">
-                  <div className="camera-icon">📷</div>
+                <div className="card-info-section">
+                  <div className="info-list">
+                    <div className="info-item">
+                      <span className="info-icon">📅</span>
+                      <div className="info-text">
+                        <strong>Ferias empresariales</strong>
+                        <p>Eventos mensuales para mostrar tu negocio</p>
+                      </div>
+                    </div>
+                    <div className="info-item">
+                      <span className="info-icon">🎓</span>
+                      <div className="info-text">
+                        <strong>Talleres de capacitación</strong>
+                        <p>Aprende sobre marketing, finanzas y gestión</p>
+                      </div>
+                    </div>
+                    <div className="info-item">
+                      <span className="info-icon">📢</span>
+                      <div className="info-text">
+                        <strong>Convocatorias públicas</strong>
+                        <p>Programas de la Alcaldía y entidades aliadas</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button className="info-button">Ver más</button>
                 </div>
               </div>
             </div>
 
-            {/* Card 3 */}
+            {/* Card 3 - Funding Info */}
             <div className="card">
               <div className="card-content">
                 <h2 className="card-title">Oportunidades de financiación / apoyo</h2>
-                <div className="card-image-placeholder card-green">
-                  <div className="camera-icon">📷</div>
+                <div className="card-info-section">
+                  <div className="info-list">
+                    <div className="info-item">
+                      <span className="info-icon">💰</span>
+                      <div className="info-text">
+                        <strong>Fondos municipales</strong>
+                        <p>Capital semilla y créditos blandos</p>
+                      </div>
+                    </div>
+                    <div className="info-item">
+                      <span className="info-icon">🏛️</span>
+                      <div className="info-text">
+                        <strong>Programas SENA</strong>
+                        <p>Financiación y acompañamiento técnico</p>
+                      </div>
+                    </div>
+                    <div className="info-item">
+                      <span className="info-icon">📈</span>
+                      <div className="info-text">
+                        <strong>Asesoría gratuita</strong>
+                        <p>Consultoría en planes de negocio y crecimiento</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button className="info-button">Ver más</button>
                 </div>
               </div>
             </div>
