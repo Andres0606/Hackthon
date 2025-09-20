@@ -1,11 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ScrollToTop } from './Utilis/ScrollToTop.js';
-import EmprendedoresVillavicencio from './Interfaces/Inicio.jsx';
-import Catalogo from './Interfaces/Catalogo.jsx';
-import Eventos from './Interfaces/Eventos.jsx';
-import Financiamiento from './Interfaces/Financiamiento.jsx';
-import Login from './Interfaces/Login.jsx';
+import EmprendedoresVillavicencio from './Interfaces/Perfil.jsx';
 
 function App() {
   return (
