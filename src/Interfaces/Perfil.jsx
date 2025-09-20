@@ -225,14 +225,11 @@ const Perfil = () => {
       { id: 'clientes', icon: '👥', label: 'Mis Clientes' }
     ] : [
       { id: 'crear-emprendimiento', icon: '🚀', label: 'Crear Mi Emprendimiento' },
-      { id: 'beneficios', icon: '⭐', label: 'Beneficios de Emprender' },
       { id: 'requisitos', icon: '📋', label: 'Requisitos' },
-      { id: 'ayuda-emprendimiento', icon: '💡', label: 'Guía para Emprender' }
     ],
     configuracion: [
       { id: 'cuenta', icon: '⚙️', label: 'Configuración de Cuenta' },
       { id: 'notificaciones', icon: '🔔', label: 'Notificaciones' },
-      { id: 'privacidad', icon: '🔒', label: 'Privacidad' },
       { id: 'ayuda', icon: '❓', label: 'Ayuda y Soporte' }
     ]
   };
@@ -377,17 +374,6 @@ const Perfil = () => {
               </ul>
             </div>
           )}
-          <button 
-            className="foto-upload-btn" 
-            style={{ marginTop: '1rem' }}
-            onClick={() => {
-              if (selectedMenu === 'crear-emprendimiento') {
-                setShowEmprendimientoForm(true);
-              }
-            }}
-          >
-            {selectedMenu === 'crear-emprendimiento' ? '🚀 Crear Emprendimiento' : 'Comenzar'}
-          </button>
         </div>
       </div>
     );
@@ -402,9 +388,6 @@ const Perfil = () => {
           <div className="perfil-title">
             <div className="left-section">
               <h1>👤 Perfil</h1>
-              <div className="impulso-villavo">
-                💼 Impulso Villavo
-              </div>
             </div>
           </div>
         </div>

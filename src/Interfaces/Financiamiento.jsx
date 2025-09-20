@@ -106,11 +106,6 @@ const OportunidadesFinanciamiento = () => {
     }
   };
 
-  const handleVerDetalles = (oportunidad) => {
-    alert(`Ver detalles de: ${oportunidad.titulo}`);
-    // Aquí puedes implementar la navegación a una página de detalles
-  };
-
   const handleContactar = (oportunidad) => {
     alert(`Contactar para: ${oportunidad.titulo}`);
     // Aquí puedes implementar la funcionalidad de contacto
@@ -126,9 +121,6 @@ const OportunidadesFinanciamiento = () => {
           <div className="oportunidades-title">
             <div className="left-section">
               <h1>Oportunidades de Financiamiento</h1>
-              <div className="impulso-villavo">
-                💼 Impulso Villavo
-              </div>
             </div>
             
             <div className="buscador-container">
@@ -213,12 +205,6 @@ const OportunidadesFinanciamiento = () => {
 
               {/* Botones de acción */}
               <div className="oportunidad-actions">
-                <button 
-                  className="btn-detalles"
-                  onClick={() => handleVerDetalles(oportunidad)}
-                >
-                  📄 Ver Detalles
-                </button>
                 <button 
                   className="btn-contactar"
                   onClick={() => handleContactar(oportunidad)}
