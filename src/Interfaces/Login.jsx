@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";  // 👈 Importa el hook
 import "../Componentes/Login.css";
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
@@ -8,6 +9,8 @@ const Login = () => {
     email: "",
     contrasena: "",
   });
+
+  const navigate = useNavigate(); // 👈 Inicializa el hook
 
   const handleChange = (e) => {
     setFormData({
@@ -30,6 +33,8 @@ const Login = () => {
       if (response.ok) {
         alert("✅ Bienvenido " + data.user.nombre);
         console.log("Usuario logueado:", data);
+
+        navigate("/inicio"); // 👈 Redirige al inicio
       } else {
         alert(`⚠️ Error: ${data.message}`);
       }
