@@ -76,6 +76,7 @@ const Emprendedores = () => {
             <option>Moda</option>
             <option>Tecnología</option>
             <option>Servicios</option>
+            <option>Turismo</option>
           </select>
 
           <select onChange={(e) => setFiltroFormalizacion(e.target.value)}>
