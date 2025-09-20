@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../Componentes/Catalogo.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
@@ -7,33 +7,37 @@ const Catalogo = () => {
   const [activeTab, setActiveTab] = useState('productos');
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  // Persistencia en localStorage
+  const [showForm, setShowForm] = useState(false);
+  const fileInputRef = useRef(null);
+  
+  // Cargar productos desde localStorage al inicio
   const [productos, setProductos] = useState(() => {
-    const guardados = localStorage.getItem('productos');
-    return guardados ? JSON.parse(guardados) : [];
+    try {
+      const guardados = localStorage.getItem('productos');
+      return guardados ? JSON.parse(guardados) : [];
+    } catch (error) {
+      console.error('Error loading products from localStorage:', error);
+      return [];
+    }
   });
-  const [showForm, setShowForm] = useState(() => {
-    const guardado = localStorage.getItem('showForm');
-    return guardado ? JSON.parse(guardado) : false;
-  });
-  // Sincronizar productos y showForm con localStorage
-  useEffect(() => {
-    localStorage.setItem('productos', JSON.stringify(productos));
-  }, [productos]);
 
+  // Estado del formulario separado en un objeto plano
+  const [nombre, setNombre] = useState('');
+  const [categoria, setCategoria] = useState('productos');
+  const [descripcion, setDescripcion] = useState('');
+  const [precio, setPrecio] = useState('');
+  const [contacto, setContacto] = useState('');
+  const [ubicacion, setUbicacion] = useState('');
+  const [imagenPreview, setImagenPreview] = useState(null);
+  
+  // Guardar productos en localStorage cuando cambien
   useEffect(() => {
-    localStorage.setItem('showForm', JSON.stringify(showForm));
-  }, [showForm]);
-  const [formData, setFormData] = useState({
-    nombre: '',
-    categoria: 'productos',
-    descripcion: '',
-    precio: '',
-    contacto: '',
-    ubicacion: '',
-    imagen: null,
-    imagenPreview: null
-  });
+    try {
+      localStorage.setItem('productos', JSON.stringify(productos));
+    } catch (error) {
+      console.error('Error saving products to localStorage:', error);
+    }
+  }, [productos]);
 
   const filteredItems = productos.filter(item => {
     const matchesTab = activeTab === 'productos' ? 
@@ -50,104 +54,71 @@ const Catalogo = () => {
     setTimeout(() => setIsLoading(false), 500);
   };
 
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
+  const limpiarFormulario = () => {
+    setNombre('');
+    setCategoria('productos');
+    setDescripcion('');
+    setPrecio('');
+    setContacto('');
+    setUbicacion('');
+    setImagenPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
   };
 
-  const handleInputChange = React.useCallback((e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  }, []);
-
-  const handleImageChange = React.useCallback((e) => {
+  const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Verificar tamaño del archivo (máximo 5MB)
       if (file.size > 5 * 1024 * 1024) {
         alert('La imagen es muy grande. Por favor selecciona una imagen menor a 5MB.');
         return;
       }
       
-      // Crear preview de la imagen
       const reader = new FileReader();
-      reader.onload = (e) => {
-        setFormData(prev => ({
-          ...prev,
-          imagen: file,
-          imagenPreview: e.target.result
-        }));
+      reader.onload = (event) => {
+        setImagenPreview(event.target.result);
       };
       reader.readAsDataURL(file);
     }
-  }, []);
+  };
 
-  const eliminarImagen = React.useCallback(() => {
-    setFormData(prev => ({
-      ...prev,
-      imagen: null,
-      imagenPreview: null
-    }));
-    // Limpiar el input file
-    const fileInput = document.getElementById('imagen-upload');
-    if (fileInput) {
-      fileInput.value = '';
+  const eliminarImagen = () => {
+    setImagenPreview(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
     }
-  }, []);
+  };
 
-  const handleSubmit = React.useCallback((e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    e.stopPropagation();
     
-    // Validaciones
-    if (!formData.nombre.trim()) {
+    if (!nombre.trim()) {
       alert('Por favor ingresa el nombre del producto/servicio');
       return;
     }
     
-    if (!formData.descripcion.trim()) {
+    if (!descripcion.trim()) {
       alert('Por favor ingresa una descripción del producto/servicio');
       return;
     }
 
     const nuevoProducto = {
       id: Date.now(),
-      nombre: formData.nombre.trim(),
-      categoria: formData.categoria,
-      descripcion: formData.descripcion.trim(),
-      precio: formData.precio.trim(),
-      contacto: formData.contacto.trim(),
-      ubicacion: formData.ubicacion.trim(),
-      imagen: formData.imagenPreview, // Guardamos el preview como imagen
+      nombre: nombre.trim(),
+      categoria: categoria,
+      descripcion: descripcion.trim(),
+      precio: precio.trim(),
+      contacto: contacto.trim(),
+      ubicacion: ubicacion.trim(),
+      imagen: imagenPreview,
       fechaCreacion: new Date().toLocaleDateString('es-CO')
     };
 
-    setProductos(prev => [...prev, nuevoProducto]);
-    
-    // Limpiar formulario
-    setFormData({
-      nombre: '',
-      categoria: 'productos',
-      descripcion: '',
-      precio: '',
-      contacto: '',
-      ubicacion: '',
-      imagen: null,
-      imagenPreview: null
-    });
-    
-    // Limpiar el input file
-    const fileInput = document.getElementById('imagen-upload');
-    if (fileInput) {
-      fileInput.value = '';
-    }
-    
-    // Cerrar formulario y mostrar mensaje
+    setProductos(prevProductos => [...prevProductos, nuevoProducto]);
+    limpiarFormulario();
     setShowForm(false);
     
-    // Cambiar a la pestaña correcta para ver el producto
     if (nuevoProducto.categoria === 'filtros') {
       setActiveTab('filtros');
     } else {
@@ -155,224 +126,17 @@ const Catalogo = () => {
     }
     
     alert('¡Producto/Servicio agregado exitosamente! 🎉');
-  }, [formData]);
+  };
 
   const eliminarProducto = (id) => {
     if (window.confirm('¿Estás seguro de eliminar este producto/servicio?')) {
-      setProductos(prev => prev.filter(item => item.id !== id));
+      setProductos(prevProductos => prevProductos.filter(item => item.id !== id));
     }
   };
 
-  const ProductoCard = ({ producto, index, onEliminar }) => (
-    <div className="producto-card fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-      <div className="producto-actions">
-        <button 
-          className="eliminar-btn"
-          onClick={() => onEliminar(producto.id)}
-          title="Eliminar producto"
-        >
-          🗑️
-        </button>
-      </div>
-      <div className="producto-placeholder">
-        {producto.imagen ? (
-          <img 
-            src={producto.imagen} 
-            alt={producto.nombre}
-            className="producto-imagen"
-          />
-        ) : (
-          <span>🎨 {producto.categoria === 'servicios' ? 'Servicio' : 'Producto'}</span>
-        )}
-      </div>
-      <div className="producto-info">
-        <h3>{producto.nombre}</h3>
-        <p>{producto.descripcion}</p>
-        {producto.precio && (
-          <div className="producto-precio">
-            💰 {producto.precio}
-          </div>
-        )}
-        {producto.contacto && (
-          <div className="producto-contacto">
-            📞 {producto.contacto}
-          </div>
-        )}
-        {producto.ubicacion && (
-          <div className="producto-ubicacion">
-            📍 {producto.ubicacion}
-          </div>
-        )}
-        <div className="producto-fecha">
-          📅 Agregado: {producto.fechaCreacion}
-        </div>
-      </div>
-    </div>
-  );
-
-  const LoadingCard = ({ index }) => (
-    <div className="producto-card" style={{ animationDelay: `${index * 0.1}s` }}>
-      <div className="producto-placeholder loading-shimmer">
-        <span>Cargando...</span>
-      </div>
-      <div className="producto-info">
-        <h3>Cargando producto...</h3>
-        <p>Por favor espera un momento</p>
-      </div>
-    </div>
-  );
-
-  const cerrarFormulario = React.useCallback(() => {
+  const cerrarFormulario = () => {
     setShowForm(false);
-  }, []);
-
-  const FormularioProducto = React.memo(() => (
-    <div className="formulario-overlay" onClick={(e) => e.target.classList.contains('formulario-overlay') && cerrarFormulario()}>
-      <div className="formulario-container">
-        <div className="formulario-header">
-          <h2>🆕 Agregar Nuevo Producto/Servicio</h2>
-          <button 
-            type="button" 
-            className="cerrar-btn" 
-            onClick={cerrarFormulario}
-          >
-            ✖️
-          </button>
-        </div>
-        <form onSubmit={handleSubmit} className="formulario-producto">
-          <div className="form-group">
-            <label htmlFor="nombre">Nombre del Producto/Servicio *</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              value={formData.nombre}
-              onChange={handleInputChange}
-              placeholder="Ej: Artesanías en madera, Servicio de catering..."
-              required
-              autoComplete="off"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="categoria">Categoría *</label>
-            <select
-              id="categoria"
-              name="categoria"
-              value={formData.categoria}
-              onChange={handleInputChange}
-            >
-              <option value="productos">Producto</option>
-              <option value="servicios">Servicio</option>
-              <option value="filtros">Producto Premium</option>
-            </select>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="descripcion">Descripción *</label>
-            <textarea
-              id="descripcion"
-              name="descripcion"
-              value={formData.descripcion}
-              onChange={handleInputChange}
-              placeholder="Describe tu producto o servicio..."
-              rows="3"
-              required
-              autoComplete="off"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="imagen-field">Imagen del Producto/Servicio</label>
-            <div className="imagen-upload-container">
-              {!formData.imagenPreview ? (
-                <div className="imagen-upload-area">
-                  <input
-                    type="file"
-                    id="imagen-upload"
-                    accept="image/*"
-                    onChange={handleImageChange}
-                    style={{ display: 'none' }}
-                  />
-                  <label htmlFor="imagen-upload" className="upload-label">
-                    <div className="upload-content">
-                      <div className="upload-icon">📸</div>
-                      <p>Haz clic para subir una imagen</p>
-                      <small>JPG, PNG o GIF (máx. 5MB)</small>
-                    </div>
-                  </label>
-                </div>
-              ) : (
-                <div className="imagen-preview-container">
-                  <img 
-                    src={formData.imagenPreview} 
-                    alt="Preview" 
-                    className="imagen-preview"
-                  />
-                  <button 
-                    type="button" 
-                    className="eliminar-imagen-btn"
-                    onClick={eliminarImagen}
-                    title="Eliminar imagen"
-                  >
-                    ✖️
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="precio">Precio (opcional)</label>
-            <input
-              type="text"
-              id="precio"
-              name="precio"
-              value={formData.precio}
-              onChange={handleInputChange}
-              placeholder="Ej: $25.000, $50.000/hora, Desde $30.000"
-              autoComplete="off"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="contacto">Contacto (opcional)</label>
-            <input
-              type="text"
-              id="contacto"
-              name="contacto"
-              value={formData.contacto}
-              onChange={handleInputChange}
-              placeholder="WhatsApp, teléfono, email..."
-              autoComplete="off"
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="ubicacion">Ubicación (opcional)</label>
-            <input
-              type="text"
-              id="ubicacion"
-              name="ubicacion"
-              value={formData.ubicacion}
-              onChange={handleInputChange}
-              placeholder="Barrio, sector de Villavicencio..."
-              autoComplete="off"
-            />
-          </div>
-
-          <div className="form-actions">
-            <button type="button" className="btn-cancelar" onClick={cerrarFormulario}>
-              Cancelar
-            </button>
-            <button type="submit" className="btn-agregar">
-              ✅ Agregar Producto/Servicio
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  ));
+  };
 
   return (
     <div className="catalogo-wrapper">
@@ -394,24 +158,67 @@ const Catalogo = () => {
           >
             📦 Productos y Servicios ({productos.filter(p => p.categoria === 'productos' || p.categoria === 'servicios').length})
           </div>
-          <div className="nav-item add-product" onClick={() => setShowForm(true)}>
-            ➕ Agregar Producto/Servicio
-          </div>
         </nav>
 
         <div className="productos-grid">
           {isLoading ? (
             Array.from({ length: 3 }, (_, index) => (
-              <LoadingCard key={`loading-${index}`} index={index} />
+              <div key={`loading-${index}`} className="producto-card" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="producto-placeholder loading-shimmer">
+                  <span>Cargando...</span>
+                </div>
+                <div className="producto-info">
+                  <h3>Cargando producto...</h3>
+                  <p>Por favor espera un momento</p>
+                </div>
+              </div>
             ))
           ) : filteredItems.length > 0 ? (
             filteredItems.map((producto, index) => (
-              <ProductoCard 
-                key={producto.id} 
-                producto={producto} 
-                index={index}
-                onEliminar={eliminarProducto}
-              />
+              <div key={producto.id} className="producto-card fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
+                <div className="producto-actions">
+                  <button 
+                    className="eliminar-btn"
+                    onClick={() => eliminarProducto(producto.id)}
+                    title="Eliminar producto"
+                  >
+                    🗑️
+                  </button>
+                </div>
+                <div className="producto-placeholder">
+                  {producto.imagen ? (
+                    <img 
+                      src={producto.imagen} 
+                      alt={producto.nombre}
+                      className="producto-imagen"
+                    />
+                  ) : (
+                    <span>🎨 {producto.categoria === 'servicios' ? 'Servicio' : 'Producto'}</span>
+                  )}
+                </div>
+                <div className="producto-info">
+                  <h3>{producto.nombre}</h3>
+                  <p>{producto.descripcion}</p>
+                  {producto.precio && (
+                    <div className="producto-precio">
+                      💰 {producto.precio}
+                    </div>
+                  )}
+                  {producto.contacto && (
+                    <div className="producto-contacto">
+                      📞 {producto.contacto}
+                    </div>
+                  )}
+                  {producto.ubicacion && (
+                    <div className="producto-ubicacion">
+                      📍 {producto.ubicacion}
+                    </div>
+                  )}
+                  <div className="producto-fecha">
+                    📅 Agregado: {producto.fechaCreacion}
+                  </div>
+                </div>
+              </div>
             ))
           ) : (
             <div className="no-results" style={{
@@ -428,7 +235,150 @@ const Catalogo = () => {
         </div>
       </div>
       
-      {showForm && <FormularioProducto />}
+      {showForm && (
+        <div className="formulario-overlay" onClick={(e) => {
+          if (e.target.classList.contains('formulario-overlay')) {
+            cerrarFormulario();
+          }
+        }}>
+          <div className="formulario-container">
+            <div className="formulario-header">
+              <h2>🆕 Agregar Nuevo Producto/Servicio</h2>
+              <button 
+                type="button" 
+                className="cerrar-btn" 
+                onClick={cerrarFormulario}
+              >
+                ✖️
+              </button>
+            </div>
+            <form onSubmit={handleSubmit} className="formulario-producto">
+              <div className="form-group">
+                <label htmlFor="nombre-input">Nombre del Producto/Servicio *</label>
+                <input
+                  type="text"
+                  id="nombre-input"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
+                  placeholder="Ej: Artesanías en madera, Servicio de catering..."
+                  required
+                  autoComplete="off"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="categoria-input">Categoría *</label>
+                <select
+                  id="categoria-input"
+                  value={categoria}
+                  onChange={(e) => setCategoria(e.target.value)}
+                >
+                  <option value="productos">Producto</option>
+                  <option value="servicios">Servicio</option>
+                  <option value="filtros">Producto Premium</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="descripcion-input">Descripción *</label>
+                <textarea
+                  id="descripcion-input"
+                  value={descripcion}
+                  onChange={(e) => setDescripcion(e.target.value)}
+                  placeholder="Describe tu producto o servicio..."
+                  rows="3"
+                  required
+                  autoComplete="off"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="imagen-field">Imagen del Producto/Servicio</label>
+                <div className="imagen-upload-container">
+                  {!imagenPreview ? (
+                    <div className="imagen-upload-area">
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        id="imagen-upload"
+                        accept="image/*"
+                        onChange={handleImageChange}
+                        style={{ display: 'none' }}
+                      />
+                      <label htmlFor="imagen-upload" className="upload-label">
+                        <div className="upload-content">
+                          <div className="upload-icon">📸</div>
+                          <p>Haz clic para subir una imagen</p>
+                          <small>JPG, PNG o GIF (máx. 5MB)</small>
+                        </div>
+                      </label>
+                    </div>
+                  ) : (
+                    <div className="imagen-preview-container">
+                      <img 
+                        src={imagenPreview} 
+                        alt="Preview" 
+                        className="imagen-preview"
+                      />
+                      <button 
+                        type="button" 
+                        className="eliminar-imagen-btn"
+                        onClick={eliminarImagen}
+                        title="Eliminar imagen"
+                      >
+                        ✖️
+                      </button>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="precio-input">Precio (opcional)</label>
+                <input
+                  type="text"
+                  id="precio-input"
+                  value={precio}
+                  onChange={(e) => setPrecio(e.target.value)}
+                  placeholder="Ej: $25.000, $50.000/hora, Desde $30.000"
+                  autoComplete="off"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="contacto-input">Contacto (opcional)</label>
+                <input
+                  type="text"
+                  id="contacto-input"
+                  value={contacto}
+                  onChange={(e) => setContacto(e.target.value)}
+                  placeholder="WhatsApp, teléfono, email..."
+                  autoComplete="off"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="ubicacion-input">Ubicación (opcional)</label>
+                <input
+                  type="text"
+                  id="ubicacion-input"
+                  value={ubicacion}
+                  onChange={(e) => setUbicacion(e.target.value)}
+                  placeholder="Barrio, sector de Villavicencio..."
+                  autoComplete="off"
+                />
+              </div>
+
+              <div className="form-actions">
+                <button type="button" className="btn-cancelar" onClick={cerrarFormulario}>
+                  Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+      
       <Footer />
     </div>
   );
