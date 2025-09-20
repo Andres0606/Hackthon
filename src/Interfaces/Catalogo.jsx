@@ -382,19 +382,7 @@ const Catalogo = () => {
         <div className="catalogo-header">
           <div className="catalogo-title">
             <div className="left-section">
-              <h1>🛍️ Catálogo</h1>
-              <div className="impulso-villavo">
-                💼 Impulso Villavo
-              </div>
-            </div>
-            <div className="buscador-container">
-              <input
-                type="text"
-                className="buscador"
-                placeholder="🔍 Buscar productos y servicios..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-              />
+              <h1>Catálogo</h1>
             </div>
           </div>
         </div>
@@ -405,12 +393,6 @@ const Catalogo = () => {
             onClick={() => handleTabChange('productos')}
           >
             📦 Productos y Servicios ({productos.filter(p => p.categoria === 'productos' || p.categoria === 'servicios').length})
-          </div>
-          <div 
-            className={`nav-item ${activeTab === 'filtros' ? 'active' : ''}`}
-            onClick={() => handleTabChange('filtros')}
-          >
-            🔍 Productos Premium ({productos.filter(p => p.categoria === 'filtros').length})
           </div>
           <div className="nav-item add-product" onClick={() => setShowForm(true)}>
             ➕ Agregar Producto/Servicio
@@ -441,12 +423,6 @@ const Catalogo = () => {
               <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>📦</div>
               <h3>¡Aún no hay productos!</h3>
               <p>Sé el primero en agregar un producto o servicio</p>
-              <button 
-                className="btn-agregar-principal"
-                onClick={() => setShowForm(true)}
-              >
-                ➕ Agregar mi primer producto
-              </button>
             </div>
           )}
         </div>
