@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { ScrollToTop } from './Utilis/ScrollToTop.js';
-import EmprendedoresVillavicencio from './Interfaces/CrearEmprendimiento.jsx';
+import EmprendedoresVillavicencio from './Interfaces/Inicio.jsx';
+import CrearEmprendimiento from './Interfaces/CrearEmprendimiento.jsx'; // Importar el componente
 import Catalogo from './Interfaces/Catalogo.jsx';
 import Eventos from './Interfaces/Eventos.jsx';
 import Financiamiento from './Interfaces/Financiamiento.jsx';
@@ -25,6 +26,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/perfil" element={<Perfil />} />
+          <Route path="/crear-emprendimiento" element={<CrearEmprendimiento />} />
         </Routes>
       </div>
     </Router>
