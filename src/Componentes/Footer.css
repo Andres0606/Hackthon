@@ -8,7 +8,7 @@
   margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
-/* Para que el footer se pegue al fondo si hay poco contenido */
+
 html, body {
   height: 100%;
   margin: 0;

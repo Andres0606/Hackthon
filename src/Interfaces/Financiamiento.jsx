@@ -108,7 +108,7 @@ const OportunidadesFinanciamiento = () => {
 
   const handleContactar = (oportunidad) => {
     alert(`Contactar para: ${oportunidad.titulo}`);
-    // Aquí puedes implementar la funcionalidad de contacto
+    
   };
 
   return (

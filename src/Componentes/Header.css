@@ -134,7 +134,7 @@
   color: #ffeb3b;
 }
 
-/* Estilos para notificaciones */
+/* Estilos para las notificaciones */
 .notification-container {
   position: relative;
 }
@@ -388,7 +388,7 @@
   margin-left: auto;
 }
 
-/* Estilo especial para cerrar sesión */
+
 .user-panel-option.logout {
   border-top: 1px solid #f0f0f0;
   color: #e74c3c;
@@ -400,7 +400,7 @@
   color: #c0392b;
 }
 
-/* Mejora para el botón de cerrar del panel */
+
 .user-panel .close-btn {
   width: 20px;
   height: 20px;
@@ -412,7 +412,7 @@
   transform: rotate(90deg);
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .nav-container {
     padding: 0 1rem;

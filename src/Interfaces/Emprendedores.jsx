@@ -10,7 +10,7 @@ const Emprendedores = () => {
 
   const [favoritos, setFavoritos] = useState({});
   const [visitas, setVisitas] = useState({});
-  const [empresas, setEmpresas] = useState([]); // ← Empresas desde backend
+  const [empresas, setEmpresas] = useState([]); // la importacion de las Empresas desde backend
 
   // 1. Traer empresas del backend
   useEffect(() => {
@@ -23,7 +23,7 @@ const Emprendedores = () => {
         const data = await res.json();
         console.log("✅ Empresas recibidas:", data);
 
-        setEmpresas(data); // 👈 Backend devuelve un array, no un objeto { success, data }
+        setEmpresas(data); // el Backend devuelve un array, no un objeto { success, data }
       } catch (error) {
         console.error("❌ Error al obtener empresas:", error);
       }
@@ -129,7 +129,7 @@ const Emprendedores = () => {
             </div>
           ))}
 
-          {/* Si no hay empresas */}
+          
           {filtrados.length === 0 && (
             <p className="no-data">⚠️ No hay empresas que coincidan con los filtros.</p>
           )}

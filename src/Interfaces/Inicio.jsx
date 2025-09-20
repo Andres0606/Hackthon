@@ -16,7 +16,7 @@ const Main = () => {
     <> 
       <Header />
       <div className="main-container">
-        {/* Welcome Section - Mejorada y centrada */}
+        
         <section className="welcome-section">
           <div className="welcome-content centered-content">
             <h1 className="welcome-title centered-title">¡Bienvenido a Impulsa Villao!</h1>

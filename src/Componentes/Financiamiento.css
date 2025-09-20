@@ -1,4 +1,4 @@
-/* OportunidadesFinanciamiento.css */
+
 .oportunidades-wrapper {
   min-height: 100vh;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -374,7 +374,7 @@
 .oportunidad-card:nth-child(5) { animation-delay: 0.5s; }
 .oportunidad-card:nth-child(6) { animation-delay: 0.6s; }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .oportunidades-wrapper {
     padding-top: 70px;

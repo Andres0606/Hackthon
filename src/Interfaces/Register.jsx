@@ -10,7 +10,6 @@ const Register = () => {
     email: "",
     contrasena: "",
     telefono_usuario: "",
-    // 👇 ya no pedimos rol, se envía siempre "ciudadano"
     rol: "ciudadano",
   });
 

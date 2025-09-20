@@ -24,7 +24,7 @@ class Empresa {
     const result = await pool.query(query, values);
     const empresa = result.rows[0];
 
-    // 👇 Verificamos si el usuario ya existe en Emprendedores
+    
     if (data.id_usuario) {
       const check = await pool.query(
         "SELECT * FROM Emprendedores WHERE id_usuario = $1",
@@ -32,7 +32,7 @@ class Empresa {
       );
 
       if (check.rows.length === 0) {
-        // Si no existe, lo creamos y mostramos en consola
+       
         const nuevo = await pool.query(
           `INSERT INTO Emprendedores (id_usuario, id_empresa) VALUES ($1, $2) RETURNING *`,
           [data.id_usuario, empresa.id_empresa]
@@ -43,7 +43,7 @@ class Empresa {
           `id_emprendedor: ${emprendedor.id_emprendedor}, id_usuario: ${emprendedor.id_usuario}, id_empresa: ${emprendedor.id_empresa}`
         );
       } else {
-        // Si ya existe, actualizamos la empresa y mostramos en consola
+        
         const actualizado = await pool.query(
           `UPDATE Emprendedores SET id_empresa = $1 WHERE id_usuario = $2 RETURNING *`,
           [empresa.id_empresa, data.id_usuario]

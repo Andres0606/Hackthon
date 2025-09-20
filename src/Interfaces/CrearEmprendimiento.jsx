@@ -110,37 +110,37 @@ const CrearEmprendimiento = () => {
             <h2 className="form-title">📝 Registrar Emprendimiento</h2>
 
             <form className="emprendimiento-form" onSubmit={handleSubmit}>
-              {/* Nombre */}
+              
               <div className="form-group">
                 <label>Nombre del Emprendimiento *</label>
                 <input type="text" name="nombre" value={formData.nombre} onChange={handleInputChange} required />
               </div>
 
-              {/* NIT */}
+             
               <div className="form-group">
                 <label>NIT</label>
                 <input type="text" name="nit" value={formData.nit} onChange={handleInputChange} />
               </div>
 
-              {/* Razón Social */}
+              
               <div className="form-group">
                 <label>Razón Social</label>
                 <input type="text" name="razon_social" value={formData.razon_social} onChange={handleInputChange} />
               </div>
 
-              {/* Dirección */}
+              
               <div className="form-group">
                 <label>Dirección</label>
                 <input type="text" name="direccion" value={formData.direccion} onChange={handleInputChange} />
               </div>
 
-              {/* Teléfono */}
+              
               <div className="form-group">
                 <label>Teléfono</label>
                 <input type="tel" name="telefono" value={formData.telefono} onChange={handleInputChange} />
               </div>
 
-              {/* Email */}
+             
               <div className="form-group">
                 <label>Email</label>
                 <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
@@ -190,7 +190,7 @@ const CrearEmprendimiento = () => {
                 <input type="text" name="logo_url" value={formData.logo_url} onChange={handleInputChange} />
               </div>
 
-              {/* Botones */}
+             
               <div className="form-actions">
                 <button type="submit" className="btn-primary">🚀 Registrar</button>
               </div>

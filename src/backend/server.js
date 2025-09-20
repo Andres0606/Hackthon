@@ -11,16 +11,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// 🔌 Conexión con PostgreSQL
+//  Conexión con PostgreSQL
 pool.connect()
   .then(() => console.log("✅ Conectado a PostgreSQL"))
   .catch(err => console.error("❌ Error de conexión a PostgreSQL:", err));
 
-// Rutas
+
 app.use("/api/users", userRouter);
 app.use("/api/empresas", empresaRouter);
 
-// Ruta de prueba
+
 app.get("/", (req, res) => {
   res.send("Servidor funcionando 🚀");
 });

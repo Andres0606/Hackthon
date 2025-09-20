@@ -16,7 +16,7 @@ body {
   padding: 0;
 }
 
-/* Welcome Section - Mejorada */
+
 .welcome-section {
   background: none;
   color: #333;
@@ -361,12 +361,12 @@ body {
   font-size: 1rem;
 }
 
-/* Animaciones para cards */
+/* Animaciones para las cards */
 .card {
   transition: all 0.3s ease;
 }
 
-/* Responsive design */
+
 @media (max-width: 1200px) {
   .cards-container {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

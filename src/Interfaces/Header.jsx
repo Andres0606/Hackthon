@@ -59,7 +59,7 @@ const Header = ({ scrollToSection }) => {
     closeUserPanel();
   };
 
-  // ✅ Validar sesión al dar click en el icono de usuario
+  //  Validar sesión al dar click en el icono de usuario
   const handleUserClick = () => {
     const userId = sessionStorage.getItem("userId");
     if (userId) {
@@ -139,7 +139,7 @@ const Header = ({ scrollToSection }) => {
             )}
           </div>
           
-          {/* 👤 Icono usuario con validación de sesión y panel desplegable */}
+          {/*  Login */}
           <div className="user-container">
             <FaUserCircle 
               className="icon user" 

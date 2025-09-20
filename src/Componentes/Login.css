@@ -1,4 +1,4 @@
-/* Login.css */
+
 
 .login-container {
   min-height: 100vh;
@@ -8,14 +8,14 @@
   padding: 20px;
   
   
-  /* Imagen de fondo */
-  background-image: url('../Imagenes/LOGIN-REGISTRO.jpg'); /* Ajusta la ruta según tu estructura */
+  
+  background-image: url('../Imagenes/LOGIN-REGISTRO.jpg'); 
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   
-  /* Gradiente opcional para mejorar la legibilidad */
+  
   background-blend-mode: overlay;
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -108,7 +108,7 @@
   text-decoration: underline;
 }
 
-/* Responsivo */
+
 @media (max-width: 768px) {
   .login-container {
     padding: 10px;

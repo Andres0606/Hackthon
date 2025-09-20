@@ -86,7 +86,7 @@
   background: #0d47a1;
 }
 
-/* Responsivo */
+
 @media (max-width: 768px) {
   .eventos-grid {
     grid-template-columns: 1fr;
