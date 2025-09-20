@@ -47,25 +47,9 @@ const EmprendimientoForm = () => {
   ];
 
   return (
+    <>
+    <Header />
     <div className="emprendimiento-container">
-      <div className="header">
-        <div className="logo">
-          <span className="logo-icon">🚀</span>
-          <span className="logo-text">Impulsa Villavo</span>
-        </div>
-        <nav className="nav-menu">
-          <button className="nav-btn active">Inicio</button>
-          <button className="nav-btn">Catálogo</button>
-          <div className="search-container">
-            <input type="text" placeholder="Buscar..." className="search-input" />
-          </div>
-        </nav>
-        <div className="user-actions">
-          <div className="notification-bell">🔔</div>
-          <div className="user-avatar">👤</div>
-        </div>
-      </div>
-
       <div className="main-content">
         <div className="form-section">
           <h2 className="form-title">📝 Registrar Emprendimiento</h2>
@@ -241,6 +225,8 @@ const EmprendimientoForm = () => {
         </div>
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

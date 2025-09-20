@@ -8,109 +8,19 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4285f4 0%, #0f9d58 100%);
   min-height: 100vh;
 }
 
 .emprendimiento-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-/* Header Styles */
-.header {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: white;
-  font-weight: bold;
-  font-size: 1.25rem;
-}
-
-.logo-icon {
-  font-size: 1.5rem;
-}
-
-.nav-menu {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.nav-btn {
-  background: transparent;
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-size: 0.9rem;
-}
-
-.nav-btn.active {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.nav-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.search-container {
-  position: relative;
-}
-
-.search-input {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 0.5rem 1rem;
-  color: white;
-  placeholder-color: rgba(255, 255, 255, 0.7);
-  width: 200px;
-}
-
-.search-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.user-actions {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.notification-bell,
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.notification-bell:hover,
-.user-avatar:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #4285f4 0%, #0f9d58 100%);
+  padding: 2rem;
+  margin:  60px 30px;
 }
 
 /* Main Content */
 .main-content {
-  padding: 2rem;
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 2rem;
@@ -171,8 +81,8 @@ body {
 .form-select:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #667eea;
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  border-color: #4285f4;
+  box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
 }
 
 .form-textarea {
@@ -206,13 +116,13 @@ body {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #4285f4 0%, #0f9d58 100%);
   color: white;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 10px 20px rgba(66, 133, 244, 0.3);
 }
 
 .btn-secondary {
@@ -263,7 +173,7 @@ body {
 }
 
 .preview-item strong {
-  color: #667eea;
+  color: #4285f4;
 }
 
 /* Responsive Design */
@@ -279,23 +189,7 @@ body {
 }
 
 @media (max-width: 768px) {
-  .header {
-    padding: 1rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .nav-menu {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-  }
-  
-  .search-input {
-    width: 150px;
-  }
-  
-  .main-content {
+  .emprendimiento-container {
     padding: 1rem;
   }
   
@@ -313,21 +207,8 @@ body {
 }
 
 @media (max-width: 480px) {
-  .header {
+  .emprendimiento-container {
     padding: 0.5rem;
-  }
-  
-  .logo-text {
-    display: none;
-  }
-  
-  .nav-btn {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
-  
-  .search-input {
-    width: 120px;
   }
   
   .form-section {
@@ -364,7 +245,7 @@ body {
 .form-input:hover,
 .form-select:hover,
 .form-textarea:hover {
-  border-color: #b0b8ea;
+  border-color: #85c1f5;
 }
 
 .preview-item:hover {
