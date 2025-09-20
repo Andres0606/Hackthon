@@ -1,11 +1,11 @@
 const { Pool } = require("pg");
 
 const pool = new Pool({
-  user: "postgres",            // tu usuario de PostgreSQL
-  host: "localhost",           // o IP de tu servidor
-  database: "Hackaton2.0", // nombre de tu BD
-  password: "123",             // 👈 contraseña puesta directamente
-  port: 5432,                  // puerto por defecto de PostgreSQL
+  user: "postgres",       // 👈 tu usuario PostgreSQL
+  host: "localhost",      // 👈 servidor BD
+  database: "Hackaton2.0",// 👈 nombre BD
+  password: "123",        // 👈 tu contraseña fija
+  port: 5432,
 });
 
 pool.connect()

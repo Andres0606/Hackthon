@@ -1,6 +1,6 @@
 const pool = require("../config/db");
 
-// Crear un nuevo usuario
+// Crear usuario
 const createUser = async (nombre, apellido, email, contrasena, telefono_usuario, rol) => {
   const query = `
     INSERT INTO Usuarios (nombre, apellido, email, contrasena, telefono_usuario, rol)
