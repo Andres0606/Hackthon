@@ -9,7 +9,7 @@ const Header = ({ scrollToSection }) => {
 
         {/* Logo Izquierda */}
         <div className="logo" onClick={() => scrollToSection("inicio")}>
-          Impulsa Villao
+          Impulsa Villavo
         </div>
 
         {/* Centro: Menú + Buscador */}
