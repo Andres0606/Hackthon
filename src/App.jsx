@@ -6,6 +6,7 @@ import Catalogo from './Interfaces/Catalogo.jsx';
 import Eventos from './Interfaces/Eventos.jsx';
 import Financiamiento from './Interfaces/Financiamiento.jsx';
 import Login from './Interfaces/Login.jsx';
+import Register from './Interfaces/Register.jsx';
 
 function App() {
   return (
@@ -19,6 +20,9 @@ function App() {
           <Route path="/eventos" element={<Eventos />} />
           <Route path="/financiamiento" element={<Financiamiento />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/Register" element={<Register />} />
+
+
         </Routes>
       </div>
     </Router>
