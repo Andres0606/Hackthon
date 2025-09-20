@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Componentes/Header.css";
 import { FaBell, FaUserCircle } from "react-icons/fa";
 
 const Header = ({ scrollToSection }) => {
+  const navigate = useNavigate();
+  const [showNotifications, setShowNotifications] = useState(false);
+
+  // Función para navegar a diferentes páginas
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
+
+  // Función para alternar el panel de notificaciones
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  };
+
+  // Datos de ejemplo para notificaciones
+  const notifications = [
+    { id: 1, message: "Nuevo evento disponible", time: "hace 2 horas" },
+    { id: 2, message: "Tu financiamiento fue aprobado", time: "hace 1 día" },
+    { id: 3, message: "Recordatorio: reunión mañana", time: "hace 2 días" }
+  ];
+
   return (
     <header className="header">
       <nav className="nav-container">
 
         {/* Logo Izquierda */}
-        <div className="logo" onClick={() => scrollToSection("inicio")}>
+        <div className="logo" onClick={() => handleNavigation("/inicio")}>
           Impulsa Villavo
         </div>
 
@@ -16,10 +37,10 @@ const Header = ({ scrollToSection }) => {
         <div className="nav-center">
           <ul className="nav-menu">
             <li>
-              <a onClick={() => scrollToSection("inicio")}>Inicio</a>
+              <a onClick={() => handleNavigation("/inicio")}>Inicio</a>
             </li>
             <li>
-              <a onClick={() => scrollToSection("catalogo")}>Catálogo</a>
+              <a onClick={() => handleNavigation("/catalogo")}>Catálogo</a>
             </li>
           </ul>
           <input
@@ -31,8 +52,47 @@ const Header = ({ scrollToSection }) => {
 
         {/* Derecha: Notificaciones + Usuario */}
         <div className="nav-right">
-          <FaBell className="icon bell" />
-          <FaUserCircle className="icon user" />
+          <div className="notification-container">
+            <FaBell 
+              className="icon bell" 
+              onClick={toggleNotifications}
+            />
+            {notifications.length > 0 && (
+              <span className="notification-badge">{notifications.length}</span>
+            )}
+            
+            {/* Panel de notificaciones */}
+            {showNotifications && (
+              <div className="notifications-panel">
+                <div className="notifications-header">
+                  <h4>Notificaciones</h4>
+                  <button 
+                    className="close-btn"
+                    onClick={() => setShowNotifications(false)}
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="notifications-list">
+                  {notifications.length > 0 ? (
+                    notifications.map((notification) => (
+                      <div key={notification.id} className="notification-item">
+                        <p className="notification-message">{notification.message}</p>
+                        <span className="notification-time">{notification.time}</span>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="no-notifications">No hay notificaciones</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+          
+          <FaUserCircle 
+            className="icon user" 
+            onClick={() => handleNavigation("/login")}
+          />
         </div>
       </nav>
     </header>

@@ -1,9 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../Componentes/Inicio.css';
 import Header from './Header.jsx';
 import Footer from './Footer.jsx';
 
 const Main = () => {
+  const navigate = useNavigate();
+
+  // Función para manejar la navegación
+  const handleNavigation = (path) => {
+    navigate(path);
+  };
+
   return (
     <> 
       <Header />
@@ -85,7 +93,12 @@ const Main = () => {
                       </div>
                     </div>
                   </div>
-                  <button className="info-button">Ver más</button>
+                  <button 
+                    className="info-button"
+                    onClick={() => handleNavigation('/catalogo')}
+                  >
+                    Ver más
+                  </button>
                 </div>
               </div>
             </div>
@@ -118,7 +131,12 @@ const Main = () => {
                       </div>
                     </div>
                   </div>
-                  <button className="info-button">Ver más</button>
+                  <button 
+                    className="info-button"
+                    onClick={() => handleNavigation('/eventos')}
+                  >
+                    Ver más
+                  </button>
                 </div>
               </div>
             </div>
@@ -151,7 +169,12 @@ const Main = () => {
                       </div>
                     </div>
                   </div>
-                  <button className="info-button">Ver más</button>
+                  <button 
+                    className="info-button"
+                    onClick={() => handleNavigation('/financiamiento')}
+                  >
+                    Ver más
+                  </button>
                 </div>
               </div>
             </div>
