@@ -18,12 +18,12 @@ function App() {
           <Route path="/" element={<Navigate to="/inicio" replace />} />
           <Route path="/inicio" element={<EmprendedoresVillavicencio />} />
           <Route path="/catalogo" element={<Catalogo />} />
+          <Route path="/emprendedores" element={<Financiamiento />} /> {/* Redirige a financiamiento */}
           <Route path="/eventos" element={<Eventos />} />
           <Route path="/financiamiento" element={<Financiamiento />} />
           <Route path="/login" element={<Login />} />
           <Route path="/Register" element={<Register />} />
           <Route path="/perfil" element={<Perfil />} />
-
         </Routes>
       </div>
     </Router>
