@@ -1,5 +1,5 @@
 import React from 'react';
-import EmprendedoresVillavicencio from './Interfaces/Financiamiento.jsx';
+import EmprendedoresVillavicencio from './Interfaces/Perfil.jsx';
 
 function App() {
   return (
@@ -10,4 +10,3 @@ function App() {
 } 
 
 export default App;
-//holi andres
